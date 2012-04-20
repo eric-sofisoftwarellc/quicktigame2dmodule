@@ -1,0 +1,2 @@
+Version 1.0 RC5 (released 2012-04-17)
+  . Add support for Titanium Mobile 2.0.1 GA
