@@ -6,20 +6,19 @@
 
 ## INSTALL QuickTiGame2d MODULE
 
-1. Grab the latest module zip from http://code.google.com/p/quicktigame2d/downloads/list
-2. Copy the module zip into your Titanium SDK directory:
-  -> see https://wiki.appcelerator.org/display/tis/Downloading+Titanium+SDKs+in+Titanium+Studio
-3. Update modules section of your tiapp.xml like below:
+* Grab the latest module zip from http://code.google.com/p/quicktigame2d/downloads/list
+* Copy the module zip into your Titanium SDK directory: see https://wiki.appcelerator.org/display/tis/Downloading+Titanium+SDKs+in+Titanium+Studio
+* Update modules section of your tiapp.xml like below:
 
 ```
 <modules>
-  <module version="0.9">com.googlecode.quicktigame2d</module>
+  <module version="1.0">com.googlecode.quicktigame2d</module>
 </modules>
 ```
 
 It is important to include the correct version number. If you don't know what version you have installed, just navigate back to the modules folder and inside the ti.admob directory you should see another folder with a version number. Include this version number in your code.
 
-4. clean and re-build your project
+* clean and re-build your project
 
 For more information about module installation, see below:
 
