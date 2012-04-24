@@ -221,6 +221,15 @@
     ((ComGooglecodeQuicktigame2dGameView *)[self view]).debug = [value boolValue];
 }
 
+-(id)useFastTimer {
+    return NUMBOOL(((ComGooglecodeQuicktigame2dGameView *)[self view]).useFastTimer);
+}
+
+-(void)setUseFastTimer:(id)value {
+    ENSURE_SINGLE_ARG(value, NSNumber);
+    ((ComGooglecodeQuicktigame2dGameView *)[self view]).useFastTimer = [value boolValue];
+}
+
 - (id)fps {
     return NUMFLOAT(((ComGooglecodeQuicktigame2dGameView*)self.view).fps);
 }

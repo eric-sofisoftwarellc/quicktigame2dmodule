@@ -40,9 +40,14 @@
 {
     EAGLContext *context;
     
+    BOOL useFastTimer;
+    
     BOOL animating;
-    NSInteger animationFrameInterval;
+    NSInteger displayLinkInterval;
     CADisplayLink *displayLink;
+    
+    NSTimer* animationTimer;
+    NSTimeInterval animationTimerInterval;
 	
 	NSMutableDictionary *touchIdMaster;
 	float touchEventParamCache[MOTION_EVENT_PARAMS_SIZE];
@@ -55,7 +60,9 @@
 }
 
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
-@property (nonatomic) NSInteger animationFrameInterval;
+@property (nonatomic) NSInteger displayLinkInterval;
+@property (nonatomic) NSTimeInterval animationTimerInterval;
+@property (nonatomic) BOOL useFastTimer;
 
 - (void)onLoad;
 - (void)onGainedFocus;

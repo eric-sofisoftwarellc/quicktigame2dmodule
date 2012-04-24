@@ -39,9 +39,13 @@
     // The OpenGL ES names for the framebuffer and renderbuffer used to render to this view.
     GLuint defaultFramebuffer, colorRenderbuffer;
     
-    NSInteger animationFrameInterval;
+    NSInteger displayLinkInterval;
     
-    BOOL displayLinkAnimating;
+    NSTimer* animationTimer;
+    NSTimeInterval animationTimerInterval;
+    
+    BOOL useFastTimer;
+    BOOL currentlyAnimating;
     
     QuickTiGame2dEngine* game;
 }
@@ -58,6 +62,7 @@
 @property (readonly) struct CGRect gamebounds;
 @property (readwrite) BOOL enableOnFpsEvent;
 @property (readwrite) NSInteger onFpsInterval;
+@property (readwrite) BOOL useFastTimer;
 
 - (void)attachContext;
 - (void)detachContext;

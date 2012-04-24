@@ -45,6 +45,7 @@
 @property (nonatomic, readwrite, assign) id onFpsInterval;
 @property (nonatomic, readwrite, assign) id correctionHint;
 @property (nonatomic, readwrite, assign) id textureFilter;
+@property (nonatomic, readwrite, assign) id useFastTimer;
 
 - (void)onNotification:(NSNotification*)notification;
 

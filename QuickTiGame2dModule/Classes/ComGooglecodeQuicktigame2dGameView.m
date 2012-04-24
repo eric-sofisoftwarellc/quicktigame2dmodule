@@ -35,7 +35,7 @@
 
 @implementation ComGooglecodeQuicktigame2dGameView
 @synthesize game;
-@synthesize framebufferWidth, framebufferHeight;
+@synthesize framebufferWidth, framebufferHeight, useFastTimer;
 
 + (Class)layerClass {
     return [CAEAGLLayer class];
@@ -63,9 +63,14 @@
         NSLog(@"Failed to set ES context current");
     }
     
-    displayLinkAnimating = FALSE;
-    animationFrameInterval = 1;
+    currentlyAnimating = FALSE;
+    displayLinkInterval = 1;
     displayLink = nil;
+    
+    animationTimerInterval = 1.0 / 60.0;
+    
+    // if TRUE, use CADisplayLink instead of NSTimer
+    useFastTimer = FALSE;
     
     if (game == nil) game = [[QuickTiGame2dEngine alloc] init];
 }
@@ -106,28 +111,41 @@
 }
 
 - (void)startAnimation {
-    if (!displayLinkAnimating) {
-        displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(drawFrame)];
-        [displayLink setFrameInterval:animationFrameInterval];
-        [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-        displayLinkAnimating = TRUE;
+    if (!currentlyAnimating) {
+        if (useFastTimer) {
+            displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(drawFrame)];
+            [displayLink setFrameInterval:displayLinkInterval];
+            [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+        } else {
+            animationTimer = [NSTimer scheduledTimerWithTimeInterval:animationTimerInterval target:self selector:@selector(drawFrame) userInfo:nil repeats:YES];
+            [[NSRunLoop currentRunLoop] addTimer:animationTimer
+                                         forMode:NSRunLoopCommonModes];
+        }
         
+        currentlyAnimating = TRUE;
         [game onLoad:framebufferWidth height:framebufferHeight];
     }
 }
 
 - (void)stopAnimation {
-    if (displayLinkAnimating) {
-        [displayLink invalidate];
-        displayLinkAnimating = FALSE;
+    if (currentlyAnimating) {
+        if (useFastTimer) {
+            [displayLink invalidate];
+            displayLink = nil;
+        } else {
+            [animationTimer invalidate];
+            animationTimer = nil;
+        }
+        currentlyAnimating = FALSE;
     }
 }
 
 - (void)setAnimationFrameInterval:(NSInteger)frameInterval {
     if (frameInterval >= 1) {
-        animationFrameInterval = frameInterval;
+        displayLinkInterval = frameInterval;
+        animationTimerInterval = frameInterval / 60.0f;
         
-        if (displayLinkAnimating) {
+        if (currentlyAnimating) {
             [self stopAnimation];
             [self startAnimation];
         }
@@ -242,7 +260,7 @@
 }
 
 - (float)fps {
-    return 60.0 / animationFrameInterval;
+    return 60.0 / displayLinkInterval;
 }
 
 - (void)setFps:(float)fps {

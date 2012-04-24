@@ -49,7 +49,7 @@
 
 @implementation QuickTiGame2dViewController
 
-@synthesize animating, context, displayLink;
+@synthesize animating, context, displayLink, useFastTimer;
 
 - (void)awakeFromNib
 {
@@ -70,8 +70,13 @@
     [eview setFramebuffer];
         
     animating = FALSE;
-    animationFrameInterval = 1;
+    displayLinkInterval = 1;
     self.displayLink = nil;
+    
+    animationTimerInterval = 1.0 / 60.0;
+    
+    // if TRUE, use CADisplayLink instead of NSTimer
+    useFastTimer = FALSE;
 	
 	// enable user interaction (touch event)
 	[self.view setUserInteractionEnabled:TRUE];
@@ -123,16 +128,16 @@
 	touchIdMaster = nil;
 }
 
-- (NSInteger)animationFrameInterval
+- (NSInteger)displayLinkInterval
 {
-    return animationFrameInterval;
+    return displayLinkInterval;
 }
 
-- (void)setAnimationFrameInterval:(NSInteger)frameInterval
+- (void)setDisplayLinkInterval:(NSInteger)frameInterval
 {
     if (frameInterval >= 1)
     {
-        animationFrameInterval = frameInterval;
+        displayLinkInterval = frameInterval;
         
         if (animating)
         {
@@ -142,16 +147,48 @@
     }
 }
 
+- (NSTimeInterval)animationTimerInterval {
+    return animationTimerInterval;
+}
+
+- (void)setAnimationTimerInterval:(NSTimeInterval)frameInterval {
+    animationTimerInterval = frameInterval;
+    
+    if (animating)
+    {
+        [self stopAnimation];
+        [self startAnimation];
+    }
+}
+
 - (void)startAnimation
 {
     if (!animating)
     {
-        CADisplayLink *aDisplayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(drawFrame)];
-        [aDisplayLink setFrameInterval:animationFrameInterval];
-        [aDisplayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-        self.displayLink = aDisplayLink;
-        
-        animating = TRUE;
+        if (useFastTimer) {
+            CADisplayLink *aDisplayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(drawFrame)];
+            [aDisplayLink setFrameInterval:displayLinkInterval];
+            [aDisplayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+            self.displayLink = aDisplayLink;
+        } else {
+            // this code is lifted from cocos2d-iphone
+            // it allows the use of adding UIKit views on top of the GLView and having animations still
+            // run while the user interacts with the UIKit views
+            
+            NSAssert( animationTimer == nil, @"animationTimer must be nil. Calling startAnimation twice?");
+            
+            animationTimer = [NSTimer scheduledTimerWithTimeInterval:animationTimerInterval target:self selector:@selector(drawFrame) userInfo:nil repeats:YES];
+            
+            //
+            // If you want to attach the opengl view into UIScrollView
+            // uncomment this line to prevent 'freezing'.
+            // It doesn't work on with the Fast Timer
+            //
+            [[NSRunLoop currentRunLoop] addTimer:animationTimer
+                                         forMode:NSRunLoopCommonModes];            
+            
+            animating = TRUE;
+        }
     }
 }
 
@@ -159,8 +196,13 @@
 {
     if (animating)
     {
-        [self.displayLink invalidate];
-        self.displayLink = nil;
+        if (useFastTimer) {
+            [self.displayLink invalidate];
+            self.displayLink = nil;
+        } else {
+            [animationTimer invalidate];
+            animationTimer = nil;
+        }
         animating = FALSE;
     }
 }
