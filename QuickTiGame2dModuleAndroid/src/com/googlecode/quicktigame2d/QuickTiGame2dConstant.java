@@ -78,4 +78,8 @@ public interface QuickTiGame2dConstant {
 	int MAP_ORIENTATION_ISOMETRIC      = 1;
 	int MAP_ORIENTATION_HEXAGONAL      = 2;
 
+	int TIMER_DEFAULT     = 0;
+	int TIMER_NSTIMER     = 0;
+	int TIMER_DISPLAYLINK = 1;
+
 }

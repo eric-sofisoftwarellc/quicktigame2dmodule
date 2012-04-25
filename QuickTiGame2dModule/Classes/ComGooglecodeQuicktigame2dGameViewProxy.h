@@ -46,6 +46,7 @@
 @property (nonatomic, readwrite, assign) id correctionHint;
 @property (nonatomic, readwrite, assign) id textureFilter;
 @property (nonatomic, readwrite, assign) id useFastTimer;
+@property (nonatomic, readwrite, assign) id timerType;
 
 - (void)onNotification:(NSNotification*)notification;
 

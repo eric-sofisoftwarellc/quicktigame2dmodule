@@ -41,6 +41,7 @@ import org.appcelerator.titanium.view.TiUIView;
 import com.googlecode.quicktigame2d.GameView;
 import com.googlecode.quicktigame2d.GameViewEventListener;
 import com.googlecode.quicktigame2d.QuickTiGame2dCameraInfo;
+import com.googlecode.quicktigame2d.QuickTiGame2dConstant;
 import com.googlecode.quicktigame2d.QuickTiGame2dTransform;
 import com.googlecode.quicktigame2d.Quicktigame2dModule;
 
@@ -404,11 +405,22 @@ public class GameViewProxy extends TiViewProxy implements GameViewEventListener 
 	@Kroll.setProperty @Kroll.method
 	public void setUseFastTimer(boolean enabled) {
 		// this property is only available on iOS so do nothing here
+		Log.w(Quicktigame2dModule.LOG_TAG, "gameview.useFastTimer is deprecated. Use gameview.timerType instead.");
 	}
 	
 	@Kroll.getProperty @Kroll.method
 	public boolean getUseFastTimer() {
 		return false;
+	}
+
+	@Kroll.setProperty @Kroll.method
+	public void setTimerType(int type) {
+		// this property is only available on iOS so do nothing here
+	}
+	
+	@Kroll.getProperty @Kroll.method
+	public int getTimerType() {
+		return QuickTiGame2dConstant.TIMER_DEFAULT;
 	}
 
 	@Override

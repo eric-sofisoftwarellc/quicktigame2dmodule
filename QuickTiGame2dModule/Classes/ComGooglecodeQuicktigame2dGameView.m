@@ -35,7 +35,7 @@
 
 @implementation ComGooglecodeQuicktigame2dGameView
 @synthesize game;
-@synthesize framebufferWidth, framebufferHeight, useFastTimer;
+@synthesize framebufferWidth, framebufferHeight, timerType;
 
 + (Class)layerClass {
     return [CAEAGLLayer class];
@@ -69,8 +69,8 @@
     
     animationTimerInterval = 1.0 / 60.0;
     
-    // if TRUE, use CADisplayLink instead of NSTimer
-    useFastTimer = FALSE;
+    // if TIMER_DISPLAYLINK, use CADisplayLink instead of NSTimer
+    timerType = TIMER_DEFAULT;
     
     if (game == nil) game = [[QuickTiGame2dEngine alloc] init];
 }
@@ -112,7 +112,7 @@
 
 - (void)startAnimation {
     if (!currentlyAnimating) {
-        if (useFastTimer) {
+        if (timerType == TIMER_DISPLAYLINK) {
             displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(drawFrame)];
             [displayLink setFrameInterval:displayLinkInterval];
             [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
@@ -129,7 +129,7 @@
 
 - (void)stopAnimation {
     if (currentlyAnimating) {
-        if (useFastTimer) {
+        if (timerType == TIMER_DISPLAYLINK) {
             [displayLink invalidate];
             displayLink = nil;
         } else {

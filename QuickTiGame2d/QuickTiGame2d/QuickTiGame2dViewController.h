@@ -40,7 +40,7 @@
 {
     EAGLContext *context;
     
-    BOOL useFastTimer;
+    NSInteger timerType;
     
     BOOL animating;
     NSInteger displayLinkInterval;
@@ -62,7 +62,7 @@
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
 @property (nonatomic) NSInteger displayLinkInterval;
 @property (nonatomic) NSTimeInterval animationTimerInterval;
-@property (nonatomic) BOOL useFastTimer;
+@property (nonatomic) NSInteger timerType;
 
 - (void)onLoad;
 - (void)onGainedFocus;

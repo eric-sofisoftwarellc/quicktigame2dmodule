@@ -49,7 +49,7 @@
 
 @implementation QuickTiGame2dViewController
 
-@synthesize animating, context, displayLink, useFastTimer;
+@synthesize animating, context, displayLink, timerType;
 
 - (void)awakeFromNib
 {
@@ -75,8 +75,8 @@
     
     animationTimerInterval = 1.0 / 60.0;
     
-    // if TRUE, use CADisplayLink instead of NSTimer
-    useFastTimer = FALSE;
+    // if TIMER_DISPLAYLINK, use CADisplayLink instead of NSTimer
+    timerType = TIMER_DEFAULT;
 	
 	// enable user interaction (touch event)
 	[self.view setUserInteractionEnabled:TRUE];
@@ -165,7 +165,7 @@
 {
     if (!animating)
     {
-        if (useFastTimer) {
+        if (timerType == TIMER_DISPLAYLINK) {
             CADisplayLink *aDisplayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(drawFrame)];
             [aDisplayLink setFrameInterval:displayLinkInterval];
             [aDisplayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
@@ -196,7 +196,7 @@
 {
     if (animating)
     {
-        if (useFastTimer) {
+        if (timerType == TIMER_DISPLAYLINK) {
             [self.displayLink invalidate];
             self.displayLink = nil;
         } else {

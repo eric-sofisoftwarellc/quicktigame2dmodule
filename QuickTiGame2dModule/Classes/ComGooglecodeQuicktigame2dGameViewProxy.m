@@ -222,12 +222,23 @@
 }
 
 -(id)useFastTimer {
-    return NUMBOOL(((ComGooglecodeQuicktigame2dGameView *)[self view]).useFastTimer);
+    NSLog(@"[WARN] gameview.useFastTimer is deprecated. Use gameview.timerType instead.");
+    return NUMBOOL(((ComGooglecodeQuicktigame2dGameView *)[self view]).timerType == TIMER_DISPLAYLINK);
 }
 
 -(void)setUseFastTimer:(id)value {
+    NSLog(@"[WARN] gameview.useFastTimer is deprecated. Use gameview.timerType instead.");
     ENSURE_SINGLE_ARG(value, NSNumber);
-    ((ComGooglecodeQuicktigame2dGameView *)[self view]).useFastTimer = [value boolValue];
+    ((ComGooglecodeQuicktigame2dGameView *)[self view]).timerType = [value boolValue] ? TIMER_DISPLAYLINK : TIMER_DEFAULT;
+}
+
+-(id)timerType {
+    return NUMINT(((ComGooglecodeQuicktigame2dGameView *)[self view]).timerType);
+}
+
+-(void)setTimerType:(id)value {
+    ENSURE_SINGLE_ARG(value, NSNumber);
+    ((ComGooglecodeQuicktigame2dGameView *)[self view]).timerType = [value intValue];
 }
 
 - (id)fps {

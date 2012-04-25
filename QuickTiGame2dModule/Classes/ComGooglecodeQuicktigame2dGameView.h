@@ -44,7 +44,7 @@
     NSTimer* animationTimer;
     NSTimeInterval animationTimerInterval;
     
-    BOOL useFastTimer;
+    NSInteger timerType;
     BOOL currentlyAnimating;
     
     QuickTiGame2dEngine* game;
@@ -62,7 +62,7 @@
 @property (readonly) struct CGRect gamebounds;
 @property (readwrite) BOOL enableOnFpsEvent;
 @property (readwrite) NSInteger onFpsInterval;
-@property (readwrite) BOOL useFastTimer;
+@property (readwrite) NSInteger timerType;
 
 - (void)attachContext;
 - (void)detachContext;
