@@ -49,6 +49,10 @@ public class Quicktigame2dModule extends KrollModule {
 	@Kroll.constant public static final int MAP_ISOMETRIC  = QuickTiGame2dConstant.MAP_ORIENTATION_ISOMETRIC;
 	@Kroll.constant public static final int MAP_HEXAGONAL  = QuickTiGame2dConstant.MAP_ORIENTATION_HEXAGONAL;
     
+	@Kroll.constant public static final int ENGINE_TIMER_DEFAULT      = QuickTiGame2dConstant.TIMER_DEFAULT;
+	@Kroll.constant public static final int ENGINE_TIMER_NSTIMER      = QuickTiGame2dConstant.TIMER_NSTIMER;
+	@Kroll.constant public static final int ENGINE_TIMER_DISPLAYLINK  = QuickTiGame2dConstant.TIMER_DISPLAYLINK;
+	
     @Kroll.constant public static final int ANIMATION_CURVE_EASE_IN_OUT   = QuickTiGame2dConstant.ANIMATION_EASING_CUBIC_INOUT;
     
     @Kroll.constant public static final int ANIMATION_CURVE_EASE_IN      = QuickTiGame2dConstant.ANIMATION_EASING_CUBIC_IN;;
