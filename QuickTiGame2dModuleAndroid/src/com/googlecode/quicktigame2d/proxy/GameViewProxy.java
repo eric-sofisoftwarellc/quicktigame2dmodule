@@ -400,7 +400,17 @@ public class GameViewProxy extends TiViewProxy implements GameViewEventListener 
 	public int getTextureFilter() {
 		return getView().getTextureFilter();
 	}
+
+	@Kroll.setProperty @Kroll.method
+	public void setUseFastTimer(boolean enabled) {
+		// this property is only available on iOS so do nothing here
+	}
 	
+	@Kroll.getProperty @Kroll.method
+	public boolean getUseFastTimer() {
+		return false;
+	}
+
 	@Override
 	public void onLoad() {
 		KrollDict notificationEventCache = new KrollDict();
