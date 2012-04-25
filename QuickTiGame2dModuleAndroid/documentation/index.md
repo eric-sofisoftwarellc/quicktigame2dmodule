@@ -7,7 +7,7 @@
 ## INSTALL QuickTiGame2d MODULE
 
 * Grab the latest module zip from http://code.google.com/p/quicktigame2d/downloads/list
-* Copy the module zip into your Titanium SDK directory: see https://wiki.appcelerator.org/display/tis/Downloading+Titanium+SDKs+in+Titanium+Studio
+* Copy the module zip into your Titanium SDK directory: http://docs.appcelerator.com/titanium/2.0/#!/guide/Titanium_Modules
 * Update modules section of your tiapp.xml like below:
 
 ```
@@ -23,4 +23,4 @@ It is important to include the correct version number. If you don't know what ve
 For more information about module installation, see below:
 
 http://code.google.com/p/quicktigame2d/wiki/InstallModuleForMac
-https://wiki.appcelerator.org/display/tis/Using+Titanium+Modules
+http://docs.appcelerator.com/titanium/2.0/#!/guide/Titanium_Modules
