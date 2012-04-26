@@ -636,23 +636,25 @@ public class QuickTiGame2dGameView extends GLSurfaceView implements Renderer {
 	        snapshotSprite.onDrawFrame(gl, true);
 	    }
 		
-	    synchronized(sceneCommandQueue) {
-	    	Integer sceneCommandType = sceneCommandQueue.poll();
-	    
-	    	if (sceneCommandType != null) {
-	    		if (sceneCommandType.intValue() == QuickTiGame2dConstant.SCENE_EVENT_POP) {
-	    			if (debug) Log.d(Quicktigame2dModule.LOG_TAG, "QuickTiGame2dGameView:popScene");
-	    			popSceneOrNull();
-	    		} else if (sceneCommandType.intValue() == QuickTiGame2dConstant.SCENE_EVENT_PUSH) {
-	    			if (debug) Log.d(Quicktigame2dModule.LOG_TAG, "QuickTiGame2dGameView:pushScene");
-	    			sceneStack.push(sceneSceneQueue.poll());
-	    		} else if (sceneCommandType.intValue() == QuickTiGame2dConstant.SCENE_EVENT_REPLACE) {
-	    			if (debug) Log.d(Quicktigame2dModule.LOG_TAG, "QuickTiGame2dGameView:replaceScene");
-	    			popSceneOrNull();
-	    			sceneStack.push(sceneSceneQueue.poll());
+	    if (snapshotQueue.isEmpty()) {
+	    	synchronized(sceneCommandQueue) {
+	    		Integer sceneCommandType = sceneCommandQueue.poll();
+
+	    		if (sceneCommandType != null) {
+	    			if (sceneCommandType.intValue() == QuickTiGame2dConstant.SCENE_EVENT_POP) {
+	    				if (debug) Log.d(Quicktigame2dModule.LOG_TAG, "QuickTiGame2dGameView:popScene");
+	    				popSceneOrNull();
+	    			} else if (sceneCommandType.intValue() == QuickTiGame2dConstant.SCENE_EVENT_PUSH) {
+	    				if (debug) Log.d(Quicktigame2dModule.LOG_TAG, "QuickTiGame2dGameView:pushScene");
+	    				sceneStack.push(sceneSceneQueue.poll());
+	    			} else if (sceneCommandType.intValue() == QuickTiGame2dConstant.SCENE_EVENT_REPLACE) {
+	    				if (debug) Log.d(Quicktigame2dModule.LOG_TAG, "QuickTiGame2dGameView:replaceScene");
+	    				popSceneOrNull();
+	    				sceneStack.push(sceneSceneQueue.poll());
+	    			}
+
+	    			sceneSceneQueue.clear();
 	    		}
-	    
-	    		sceneSceneQueue.clear();
 	    	}
 	    }
 	    
@@ -831,8 +833,8 @@ public class QuickTiGame2dGameView extends GLSurfaceView implements Renderer {
 	}
 	
 	public QuickTiGame2dScene popScene() {
-    	snapshot();
 	    synchronized(sceneCommandQueue) {
+	    	snapshot();
 	    	sceneCommandQueue.offer(new Integer(QuickTiGame2dConstant.SCENE_EVENT_POP));
 	    	sceneSceneQueue.clear();
 	    }
@@ -840,8 +842,8 @@ public class QuickTiGame2dGameView extends GLSurfaceView implements Renderer {
 	}
 
 	public QuickTiGame2dScene pushScene(QuickTiGame2dScene scene) {
-	    snapshot();
 	    synchronized(sceneCommandQueue) {
+		    snapshot();
 	    	sceneCommandQueue.offer(new Integer(QuickTiGame2dConstant.SCENE_EVENT_PUSH));
 	    	sceneSceneQueue.offer(scene);
 	    }
@@ -849,8 +851,8 @@ public class QuickTiGame2dGameView extends GLSurfaceView implements Renderer {
 	}
 	
 	public QuickTiGame2dScene replaceScene(QuickTiGame2dScene scene) {
-	    snapshot();
 	    synchronized(sceneCommandQueue) {
+		    snapshot();
 	    	sceneCommandQueue.offer(new Integer(QuickTiGame2dConstant.SCENE_EVENT_REPLACE));
 	    	sceneSceneQueue.offer(scene);
 	    }

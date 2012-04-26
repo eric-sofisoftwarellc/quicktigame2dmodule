@@ -366,7 +366,7 @@ static GLint  textureFilter  = GL_NEAREST;
         [snapshotSprite drawFrame];
     }
 
-    if (sceneEventType != SCENE_EVENT_UNKNOWN) {
+    if ([snapshotQueue count] == 0 && sceneEventType != SCENE_EVENT_UNKNOWN) {
         if (sceneEventType == SCENE_EVENT_POP) {
             if (debug) NSLog(@"[DEBUG] QuickTiGame2dEngine:popScene");
             [sceneStack pop];
