@@ -31,6 +31,7 @@ public interface GameViewEventListener extends SpriteEventListener {
 	void onLoad();
 	void onGainedFocus();
 	void onLostFocus();
+	void onSurfaceChanged(int width, int height);
 	void onDrawFrame(int delta);
 	void onFps(int delta, float fps);
 	void onDispose();

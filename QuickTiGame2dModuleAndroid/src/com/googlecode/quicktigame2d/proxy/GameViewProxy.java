@@ -424,6 +424,17 @@ public class GameViewProxy extends TiViewProxy implements GameViewEventListener 
 	}
 
 	@Override
+	public void onSurfaceChanged(int width, int height) {
+		KrollDict notificationEventCache = new KrollDict();
+		notificationEventCache.put("uptime", uptime());
+		notificationEventCache.put("eventName", "onsurfacechanged");
+		notificationEventCache.put("width",  getView().getGameViewWidth());
+		notificationEventCache.put("height", getView().getGameViewHeight());
+		this.fireEvent("onsurfacechanged", notificationEventCache);
+		if (topScene() != null) topScene().onNotification(notificationEventCache);
+	}
+
+	@Override
 	public void onLoad() {
 		KrollDict notificationEventCache = new KrollDict();
 		if (getDebug()) Log.d(Quicktigame2dModule.LOG_TAG, "GameViewProxy.onLoad");

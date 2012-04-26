@@ -91,6 +91,8 @@ public class QuickTiGame2dGameView extends GLSurfaceView implements Renderer {
 	private boolean useCustomCamera = false;
 	private boolean sizeChanged = false;
 	private boolean orientationFixed = false;
+	private boolean shouldReloadSnapshot = true;
+	private boolean squareVBOLoaded = false;
 
 	private Queue<Integer> snapshotQueue = new ConcurrentLinkedQueue<Integer>();;
 	private Queue<Integer> sceneCommandQueue = new LinkedList<Integer>();;
@@ -148,23 +150,31 @@ public class QuickTiGame2dGameView extends GLSurfaceView implements Renderer {
 		hudScene.setHUD(true);
 	}
 	
-	private void onLoad(GL10 gl10) {
-		if (loaded) return;
-		
-		GL11 gl = (GL11)gl10;
-		
-		restoreGLState(gl, true);
-		
-		loadSquareVBOPointer(gl);
-		
+	private void loadSnapshotTexture(GL10 gl10) {
 		if (GLHelper.checkIfContextSupportsFrameBufferObject(gl10)) {
+			
+			if (snapshotTexture != null) {
+				snapshotTexture.onDispose(gl10);
+				snapshotTexture = null;
+			}
+			
+            if (debug) Log.d(Quicktigame2dModule.LOG_TAG, "QuickTiGame2dGameView:loadSnapshotTexture");
+			
 			snapshotTexture = new QuickTiGame2dTexture(getContext());
 			if (snapshotTexture.onLoadSnapshot(gl10, framebufferWidth, framebufferHeight)) {
 				textureCache.put(snapshotTexture.getName(), snapshotTexture);
 				offscreenSupported = true;
 			}
 		}
-	    
+	}
+	
+	private void onLoad(GL10 gl10) {
+		if (loaded) return;
+		
+		GL11 gl = (GL11)gl10;
+		
+		restoreGLState(gl, true);
+		loadSquareVBOPointer(gl);
 		restoreGLState(gl, false);
 
 		synchronized (listeners) {
@@ -340,6 +350,8 @@ public class QuickTiGame2dGameView extends GLSurfaceView implements Renderer {
 	}
 
 	private void loadSquareVBOPointer(GL10 gl10) {
+		if (squareVBOLoaded) return;
+		
 		GL11 gl = (GL11)gl10;
 		
 	    squareIndices[0] = 0;
@@ -377,6 +389,8 @@ public class QuickTiGame2dGameView extends GLSurfaceView implements Renderer {
 	    gl.glBindBuffer(GL11.GL_ARRAY_BUFFER, 0);
 	    
 	    if (debug) GLHelper.checkError(gl);
+	    
+	    squareVBOLoaded = true;
 	}
 	
 	private void restoreGLState(GL10 gl10, boolean enabled) {
@@ -510,6 +524,11 @@ public class QuickTiGame2dGameView extends GLSurfaceView implements Renderer {
 	public void onDrawFrame(GL10 gl) {
 		if (!focused || !orientationFixed) return;
 		if (!loaded) onLoad(gl);
+		
+		if (shouldReloadSnapshot) {
+			loadSnapshotTexture(gl);
+			shouldReloadSnapshot = false;
+		}
 		
 		restoreGLState(gl, true);
 		
@@ -669,6 +688,12 @@ public class QuickTiGame2dGameView extends GLSurfaceView implements Renderer {
 	public void onSurfaceChanged(GL10 gl, int width, int height) {
 		updateSurfaceSize(width, height);
 		
+		synchronized (listeners) {
+			for (GameViewEventListener listener : listeners) {
+				listener.onSurfaceChanged(width, height);
+			}
+		}
+		
 		if (debug) Log.d(Quicktigame2dModule.LOG_TAG, 
 				String.format("QuickTiGame2dGameView.onSurfaceChanged orientation=%d buffer=%dx%d screen=%dx%d",
 						orientation, framebufferWidth, framebufferHeight, this.width, this.height));
@@ -695,6 +720,7 @@ public class QuickTiGame2dGameView extends GLSurfaceView implements Renderer {
 		
 		this.orientationFixed = true;
 		this.dirty  = true;
+		this.shouldReloadSnapshot = true;
 	}
 	
 	public void start() {
