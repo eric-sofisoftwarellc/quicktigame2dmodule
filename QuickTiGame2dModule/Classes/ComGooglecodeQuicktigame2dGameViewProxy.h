@@ -47,6 +47,7 @@
 @property (nonatomic, readwrite, assign) id textureFilter;
 @property (nonatomic, readwrite, assign) id useFastTimer;
 @property (nonatomic, readwrite, assign) id timerType;
+@property (nonatomic, readwrite, assign) id opaque;
 
 - (void)onNotification:(NSNotification*)notification;
 

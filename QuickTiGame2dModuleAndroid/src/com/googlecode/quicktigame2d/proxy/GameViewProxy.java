@@ -323,6 +323,17 @@ public class GameViewProxy extends TiViewProxy implements GameViewEventListener 
 	}
 	
 	@Kroll.setProperty @Kroll.method
+	public void setOpaque(boolean enable) {
+		// do nothing because opaque is not supported on Android
+		Log.w(Quicktigame2dModule.LOG_TAG, "gameview.opaque is not supported on Android");
+	}
+	
+	@Kroll.getProperty @Kroll.method
+	public boolean getOpaque() {
+		return true;
+	}
+	
+	@Kroll.setProperty @Kroll.method
 	public void setFps(float fps) {
 		getView().setFps(fps);
 	}

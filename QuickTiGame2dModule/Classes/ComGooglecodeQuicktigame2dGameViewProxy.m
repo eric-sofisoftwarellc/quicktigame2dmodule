@@ -212,6 +212,15 @@
     [_view setCamera:info];
 }
 
+-(id)opaque {
+    return NUMBOOL(self.view.opaque);
+}
+
+-(void)setOpaque:(id)value {
+    ENSURE_SINGLE_ARG(value, NSNumber);
+    self.view.opaque = [value boolValue];
+}
+
 -(id)debug {
     return NUMBOOL(((ComGooglecodeQuicktigame2dGameView *)[self view]).debug);
 }
