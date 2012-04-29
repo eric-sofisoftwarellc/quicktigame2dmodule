@@ -95,9 +95,13 @@
     }
 }
 
-- (void)alpha:(id)args {
+-(id)alpha {
+    return NUMFLOAT(scene.alpha);
+}
+
+- (void)setAlpha:(id)args {
     ENSURE_SINGLE_ARG(args, NSNumber);
-    [scene alpha:[args floatValue]];
+    scene.alpha = [args floatValue];
 }
 
 -(void)setName:(id)value {

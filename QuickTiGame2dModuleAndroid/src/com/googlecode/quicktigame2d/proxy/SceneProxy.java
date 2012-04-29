@@ -106,12 +106,7 @@ public class SceneProxy extends KrollProxy {
 	public void color(float red, float green, float blue) {
 		scene.color(red, green, blue);
 	}
-	
-	@Kroll.method
-	public void alpha(float alpha) {
-		scene.alpha(alpha);
-	}
-	
+		
 	@Kroll.method
 	public void add(SpriteProxy sprite) {
 		synchronized (sprites) {
@@ -138,5 +133,14 @@ public class SceneProxy extends KrollProxy {
 		return scene;
 	}
 
+	@Kroll.setProperty @Kroll.method
+	public void setAlpha(float alpha) {
+		scene.setAlpha(alpha);
+	}
+	
+	@Kroll.getProperty @Kroll.method
+	public float getAlpha() {
+		return scene.getAlpha();
+	}
 
 }

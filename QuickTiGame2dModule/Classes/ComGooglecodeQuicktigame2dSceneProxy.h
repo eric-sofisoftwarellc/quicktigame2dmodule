@@ -34,6 +34,7 @@
     ArrayStackQueue* spriteStack;
 }
 @property (nonatomic, readwrite, assign) id name;
+@property (nonatomic, readwrite, assign) id alpha;
 
 - (QuickTiGame2dScene*)scene;
 
@@ -43,7 +44,6 @@
 
 -(void)dispose:(id)args;
 - (void)color:(id)args;
-- (void)alpha:(id)args;
 - (id)add:(id)args;
 - (void)remove:(id)args;
 

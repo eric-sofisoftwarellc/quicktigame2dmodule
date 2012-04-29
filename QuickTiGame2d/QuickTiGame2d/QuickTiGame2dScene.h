@@ -56,12 +56,12 @@
 @property (readwrite) GLint srcBlendFactor;
 @property (readwrite) GLint dstBlendFactor;
 @property (readwrite) BOOL isHUD;
+@property (readwrite) float alpha;
 
 -(void)addSprite:(QuickTiGame2dSprite*)sprite;
 -(void)removeSprite:(QuickTiGame2dSprite*)sprite;
 -(void)addWaitingSprites;
 -(void)removeWaitingSprites;
--(void)alpha:(float)alpha;
 -(void)color:(float)red green:(float)green blue:(float)blue;
 -(void)color:(float)red green:(float)green blue:(float)blue alpha:(float)alpha;
 

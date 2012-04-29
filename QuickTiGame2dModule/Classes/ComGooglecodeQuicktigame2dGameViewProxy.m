@@ -219,6 +219,8 @@
 -(void)setOpaque:(id)value {
     ENSURE_SINGLE_ARG(value, NSNumber);
     self.view.opaque = [value boolValue];
+    
+    [(ComGooglecodeQuicktigame2dGameView *)self.view alpha:(self.view.opaque ? 1 : 0)];
 }
 
 -(id)debug {

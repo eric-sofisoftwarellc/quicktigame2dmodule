@@ -179,7 +179,11 @@
     return [sprites count] > 0 || [waitingForAddSprites count] > 0;
 }
 
--(void)alpha:(float)alpha {
+-(float)alpha {
+    return color[3];
+}
+
+-(void)setAlpha:(float)alpha {
     color[3] = alpha;
 }
 

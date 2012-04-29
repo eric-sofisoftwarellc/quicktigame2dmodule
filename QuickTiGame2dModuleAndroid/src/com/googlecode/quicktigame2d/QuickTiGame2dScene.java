@@ -146,9 +146,13 @@ public class QuickTiGame2dScene {
 	public void color(float red, float green, float blue) {
 		color(red, green, blue, color[3]);
 	}
-	
-	public void alpha(float alpha) {
+		
+	public void setAlpha(float alpha) {
 		color[3] = alpha;
+	}
+	
+	public float getAlpha() {
+		return color[3];
 	}
 	
 	public void setDebug(boolean enabled) {
