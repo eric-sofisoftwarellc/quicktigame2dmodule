@@ -70,6 +70,18 @@
 	[super shutdown:sender];
 }
 
+-(void)suspend:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"onSuspend" object:sender];
+	[super suspend:sender];
+}
+
+-(void)resume:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"onResume" object:sender];
+	[super resume:sender];
+}
+
 #pragma mark Cleanup 
 
 -(void)dealloc

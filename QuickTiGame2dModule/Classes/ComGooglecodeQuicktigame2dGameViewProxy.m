@@ -69,6 +69,13 @@
     if ([notification.name isEqualToString:@"onDrawFrame"]) {
         lowerCaseEventName = @"enterframe";
     }
+
+    if ([notification.name isEqualToString:@"onSuspend"]) {
+        [(ComGooglecodeQuicktigame2dGameView*)self.view stop];
+    }
+    if ([notification.name isEqualToString:@"onResume"]) {
+        [(ComGooglecodeQuicktigame2dGameView*)self.view start];
+    }
     
     [self fireEvent:lowerCaseEventName withObject:notification.userInfo];
     

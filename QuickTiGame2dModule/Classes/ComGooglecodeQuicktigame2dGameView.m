@@ -216,11 +216,13 @@
 }
 
 - (void)start {
+    [self startAnimation];
     [game start];
 }
 
 - (void)stop {
     [game stop];
+    [self stopAnimation];
 }
 
 - (void)pause {
