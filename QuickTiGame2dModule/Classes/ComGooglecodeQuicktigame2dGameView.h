@@ -46,6 +46,7 @@
     
     NSInteger timerType;
     BOOL currentlyAnimating;
+    BOOL layoutSubviewsDone;
     
     QuickTiGame2dEngine* game;
 }

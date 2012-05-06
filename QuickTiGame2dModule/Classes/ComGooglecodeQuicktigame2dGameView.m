@@ -190,9 +190,13 @@
 }
 
 - (void)layoutSubviews {
+    if ([self debug]) NSLog(@"[DEBUG] GameView layoutSubviews");
+    
     [EAGLContext setCurrentContext:context];
     [self deleteFramebuffer];
     [self createFramebuffer];
+    
+    layoutSubviewsDone = TRUE;
 }
 
 - (void)dealloc {
@@ -216,11 +220,19 @@
 }
 
 - (void)start {
+    if (!context) return;
+    if (!layoutSubviewsDone) return;
+    
+    if ([self debug]) NSLog(@"[DEBUG] GameView start");
     [self startAnimation];
     [game start];
 }
 
 - (void)stop {
+    if (!context) return;
+    if (!layoutSubviewsDone) return;
+    
+    if ([self debug]) NSLog(@"[DEBUG] GameView stop");
     [game stop];
     [self stopAnimation];
 }
