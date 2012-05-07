@@ -31,12 +31,16 @@
     QuickTiGame2dTexture* labelTexture;
     NSString* text;
     NSString* fontFace;
-    NSInteger fontSize;
+    CGFloat   fontSize;
+    
+    BOOL shouldReload;
 }
 @property (readwrite, copy)   NSString* text;
 @property (readwrite, copy)   NSString* fontFace;
-@property (readwrite)         NSInteger fontSize;
+@property (readwrite)         CGFloat   fontSize;
+@property (readonly)          CGFloat   systemFontSize;
 
+-(void)reload;
 -(void)onLoad;
 -(void)drawFrame;
 -(void)onDispose;

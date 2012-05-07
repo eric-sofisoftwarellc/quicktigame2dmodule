@@ -28,8 +28,16 @@
 #import "QuickTiGame2dTextSprite.h"
 #import "QuickTiGame2dEngine.h"
 
+@interface QuickTiGame2dTextSprite (PrivateMethods)
+-(void)loadTextData;
+@end
+
 @implementation QuickTiGame2dTextSprite
 @synthesize text, fontSize, fontFace;
+
+-(CGFloat)systemFontSize {
+    return [UIFont systemFontSize];
+}
 
 -(void)loadTextData {
     UIFont* font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
@@ -64,7 +72,7 @@
     
     CGColorSpaceRelease(colorSpace);
     CGContextRelease(context);
-
+    
     labelTexture.name   = text;
     labelTexture.width  = textWidth;
     labelTexture.height = textHeight;
@@ -74,8 +82,12 @@
     [labelTexture onLoadWithBytes];
     [labelTexture freeData];
     
-    if (self.width  == 0) self.width  = textWidth;
-    if (self.height == 0) self.height = textHeight;
+    self.width  = textWidth;
+    self.height = textHeight;
+}
+
+-(void)reload {
+    shouldReload = TRUE;
 }
 
 -(void)onLoad {
@@ -97,6 +109,12 @@
 }
 
 -(void)drawFrame {
+    if (shouldReload) {
+        [labelTexture onDispose];
+        [self loadTextData];
+        [self bindVertex];
+        shouldReload = FALSE;
+    }
     [super drawFrame];
 }
 -(void)onDispose {
@@ -117,6 +135,8 @@
         self.text = @"";
         self.fontFace = nil;
         self.fontSize = 0;
+        
+        shouldReload = FALSE;
     }
     return self;
 }
