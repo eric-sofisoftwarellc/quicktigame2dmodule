@@ -98,6 +98,7 @@
     [self createTextureBuffer];
     [self bindVertex];
     
+    shouldReload = FALSE;
     loaded = TRUE;
 }
 
