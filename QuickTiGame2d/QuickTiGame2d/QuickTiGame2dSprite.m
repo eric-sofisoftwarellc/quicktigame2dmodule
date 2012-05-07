@@ -32,7 +32,6 @@
 @interface QuickTiGame2dSprite (PrivateMethods)
 -(BOOL)setFrameIndex:(NSInteger)index force:(BOOL)force;
 -(BOOL)setFrameIndex:(NSInteger)index;
--(void)bindVertex;
 -(float)getTexCoordStartX;
 -(float)getTexCoordEndX;
 -(float)getTexCoordStartY;

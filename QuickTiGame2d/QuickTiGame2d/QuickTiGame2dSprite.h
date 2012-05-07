@@ -126,6 +126,7 @@
 @property (readonly) QuickTiGame2dTexture* texture;
 
 -(void)onLoad;
+-(void)bindVertex;
 -(void)drawFrame;
 -(void)onDispose;
 
