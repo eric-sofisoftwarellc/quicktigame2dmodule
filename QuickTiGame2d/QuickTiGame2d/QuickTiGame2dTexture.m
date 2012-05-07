@@ -98,6 +98,23 @@
     return TRUE;
 }
 
+-(BOOL)onLoadWithBytes {
+    if (loaded) return FALSE;
+    if (isSnapshot) return FALSE;
+    
+    self.textureId = -1;
+    self.hasAlpha  = TRUE;
+    self.freed     = FALSE;
+    
+    [self loadTexture];
+    loaded = TRUE;
+    if ([QuickTiGame2dEngine debug]) NSLog(@"[DEBUG] load Texture: %@", name);
+    
+    [self fireOnLoadTexture];
+    
+    return TRUE;
+}
+
 
 -(void)loadTexture {
     glWidth  = nextPowerOfTwo(width);

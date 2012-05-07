@@ -19,6 +19,7 @@
 		F9A9F44A149F285E00BCA6A8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A9F449149F285E00BCA6A8 /* main.m */; };
 		F9A9F44E149F285E00BCA6A8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A9F44D149F285E00BCA6A8 /* AppDelegate.m */; };
 		F9BADC3B14DA153F00B7545C /* QuickTiGame2dTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BADC3A14DA153F00B7545C /* QuickTiGame2dTransform.m */; };
+		F9E0DA32155751FA00AF8951 /* QuickTiGame2dTextSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E0DA31155751FA00AF8951 /* QuickTiGame2dTextSprite.m */; };
 		F9E360C214A06839006645B3 /* QuickTiGame2dAnimationFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E360C114A06839006645B3 /* QuickTiGame2dAnimationFrame.m */; };
 		F9EDD7D4149F29F200AD6F6D /* QuickTiGame2dEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = F9EDD7C5149F29F200AD6F6D /* QuickTiGame2dEngine.m */; };
 		F9EDD7D5149F29F200AD6F6D /* QuickTiGame2dScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F9EDD7C7149F29F200AD6F6D /* QuickTiGame2dScene.m */; };
@@ -59,6 +60,8 @@
 		F9A9F44D149F285E00BCA6A8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		F9BADC3914DA153F00B7545C /* QuickTiGame2dTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickTiGame2dTransform.h; sourceTree = "<group>"; };
 		F9BADC3A14DA153F00B7545C /* QuickTiGame2dTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickTiGame2dTransform.m; sourceTree = "<group>"; };
+		F9E0DA30155751FA00AF8951 /* QuickTiGame2dTextSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickTiGame2dTextSprite.h; sourceTree = "<group>"; };
+		F9E0DA31155751FA00AF8951 /* QuickTiGame2dTextSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickTiGame2dTextSprite.m; sourceTree = "<group>"; };
 		F9E360C014A06839006645B3 /* QuickTiGame2dAnimationFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickTiGame2dAnimationFrame.h; sourceTree = "<group>"; };
 		F9E360C114A06839006645B3 /* QuickTiGame2dAnimationFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickTiGame2dAnimationFrame.m; sourceTree = "<group>"; };
 		F9EDD7C3149F29F200AD6F6D /* QuickTiGame2dConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickTiGame2dConstant.h; sourceTree = "<group>"; };
@@ -172,6 +175,8 @@
 				F9A6A1C714EC78490077D8A1 /* QuickTiGame2dParticlesTypes.h */,
 				F92DA7A51509F14500E11285 /* QuickTiGame2dMapSprite.h */,
 				F92DA7A61509F14500E11285 /* QuickTiGame2dMapSprite.m */,
+				F9E0DA30155751FA00AF8951 /* QuickTiGame2dTextSprite.h */,
+				F9E0DA31155751FA00AF8951 /* QuickTiGame2dTextSprite.m */,
 				F9A9F44C149F285E00BCA6A8 /* AppDelegate.h */,
 				F9A9F44D149F285E00BCA6A8 /* AppDelegate.m */,
 				F9A9F444149F285E00BCA6A8 /* Supporting Files */,
@@ -285,6 +290,7 @@
 				F9A6A1CB14EC78800077D8A1 /* QuickTiGame2dParticles.m in Sources */,
 				F9A6A1D014EC877B0077D8A1 /* ParticleDataReader.m in Sources */,
 				F92DA7A71509F14500E11285 /* QuickTiGame2dMapSprite.m in Sources */,
+				F9E0DA32155751FA00AF8951 /* QuickTiGame2dTextSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

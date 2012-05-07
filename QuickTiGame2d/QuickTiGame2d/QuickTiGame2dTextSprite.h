@@ -25,56 +25,20 @@
 // OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
 // EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // 
-#import "OpenGLES/ES1/gl.h"
-#import "OpenGLES/ES1/glext.h"
-#import "OpenGLES/ES2/gl.h"
-#import "OpenGLES/ES2/glext.h"
+#import "QuickTiGame2dSprite.h"
 
-@interface QuickTiGame2dTexture : NSObject {
-    NSString* name;
-    BOOL     loaded;
-    GLuint   textureId;
-    int      width;
-    int      height;
-	int      glWidth;
-	int      glHeight;
-    GLubyte* data;
-    BOOL     hasAlpha;
-    BOOL     freed;
-    BOOL     isPVRTC_2;
-    BOOL     isPVRTC_4;
-    BOOL     isPNG;
-    int      dataLength;
-    
-    BOOL     isSnapshot;
-    GLuint   framebufferId;
-    GLint    framebufferOldId;
+@interface QuickTiGame2dTextSprite : QuickTiGame2dSprite {
+    QuickTiGame2dTexture* labelTexture;
+    NSString* text;
+    NSString* fontFace;
+    NSInteger fontSize;
 }
-@property (readwrite, copy) NSString* name;
-@property (readonly)  BOOL loaded;
-@property (readwrite) GLuint textureId;
-@property (readwrite) int    width, height, glWidth, glHeight;
-@property (assign, readwrite) GLubyte* data;
-@property (readwrite) BOOL hasAlpha;
-@property (readwrite) BOOL freed;
-@property (readwrite) BOOL isPVRTC_2;
-@property (readwrite) BOOL isPVRTC_4;
-@property (readwrite) BOOL isPNG;
-@property (readwrite) int  dataLength;
-@property (readwrite) GLuint framebufferId;
-@property (readwrite) GLint framebufferOldId;
-@property (readonly) BOOL isSnapshot;
-@property (readonly) float maxS;
-@property (readonly) float maxT;
+@property (readwrite, copy)   NSString* text;
+@property (readwrite, copy)   NSString* fontFace;
+@property (readwrite)         NSInteger fontSize;
 
--(BOOL)onLoad;
--(BOOL)onLoad:(NSData*)texdata;
--(BOOL)onLoadWithBytes;
+-(void)onLoad;
+-(void)drawFrame;
 -(void)onDispose;
--(void)genTextures;
--(void)freeData;
-
--(void)fireOnLoadTexture;
--(BOOL)onLoadSnapshot:(NSInteger)_width height:(NSInteger)_height;
 
 @end
