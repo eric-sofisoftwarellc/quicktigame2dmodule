@@ -49,6 +49,9 @@
     BOOL     isSnapshot;
     GLuint   framebufferId;
     GLint    framebufferOldId;
+    
+    BOOL     useCustomFilter;
+    GLint    textureFilter;
 }
 @property (readwrite, copy) NSString* name;
 @property (readonly)  BOOL loaded;
@@ -66,6 +69,7 @@
 @property (readonly) BOOL isSnapshot;
 @property (readonly) float maxS;
 @property (readonly) float maxT;
+@property (readwrite) GLint textureFilter;
 
 -(BOOL)onLoad;
 -(BOOL)onLoad:(NSData*)texdata;

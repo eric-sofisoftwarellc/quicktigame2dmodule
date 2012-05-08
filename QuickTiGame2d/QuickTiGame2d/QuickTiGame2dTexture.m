@@ -60,6 +60,9 @@
         isSnapshot = FALSE;
         framebufferId    = 0;
         framebufferOldId = 0;
+        
+        useCustomFilter = FALSE;
+        textureFilter   = GL_NEAREST;
     }
     return self;
 }
@@ -126,8 +129,8 @@
     glBindTexture(GL_TEXTURE_2D, textureId);
     
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, [QuickTiGame2dEngine textureFilter]);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, [QuickTiGame2dEngine textureFilter]);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, [self textureFilter]);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, [self textureFilter]);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     
@@ -179,8 +182,8 @@
     glBindTexture(GL_TEXTURE_2D, textureId);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureId, 0);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, [QuickTiGame2dEngine textureFilter]);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, [QuickTiGame2dEngine textureFilter]);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, [self textureFilter]);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, [self textureFilter]);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glBindTexture(GL_TEXTURE_2D, 0);
@@ -242,6 +245,19 @@
 
 -(float)maxT {
     return height / (float)glHeight;
+}
+
+-(GLint)textureFilter {
+    if (useCustomFilter) {
+        return textureFilter;
+    } else {
+        [QuickTiGame2dEngine textureFilter];
+    }
+}
+
+-(void)setTextureFilter:(GLint)filter {
+    useCustomFilter = TRUE;
+    textureFilter   = filter;
 }
 
 @end

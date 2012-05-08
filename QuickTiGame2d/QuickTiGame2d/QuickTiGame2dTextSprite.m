@@ -89,6 +89,7 @@
     labelTexture.height = textHeight;
     labelTexture.data   = bitmap;
     labelTexture.dataLength = blength;
+    labelTexture.textureFilter = GL_LINEAR; // anti alias
     
     [labelTexture onLoadWithBytes];
     [labelTexture freeData];

@@ -69,6 +69,7 @@ public class QuickTiGame2dTextSprite extends QuickTiGame2dSprite {
 			labelTexture = new QuickTiGame2dTexture(view.getContext());
 			labelTexture.setWidth(1);
 			labelTexture.setHeight(1);
+			labelTexture.setTextureFilter(GL10.GL_LINEAR);
 		}
 		
 		TextPaint forePaint = new TextPaint();

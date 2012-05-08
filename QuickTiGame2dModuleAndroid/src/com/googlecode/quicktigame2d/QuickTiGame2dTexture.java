@@ -61,6 +61,9 @@ public class QuickTiGame2dTexture {
 	private boolean isSnapshot;
 	private int framebufferId;
 	private int framebufferOldId;
+	
+	private boolean useCustomFilter = false;
+	private int textureFilter = GL10.GL_NEAREST;
 
 	private final int[] GENERATED_TEXTUREID  = new int[1];
 
@@ -87,8 +90,8 @@ public class QuickTiGame2dTexture {
 		
 		gl.glBindTexture(GL10.GL_TEXTURE_2D, getTextureId());
 		
-		gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MIN_FILTER, QuickTiGame2dGameView.textureFilter);
-		gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MAG_FILTER, QuickTiGame2dGameView.textureFilter);
+		gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MIN_FILTER, getTextureFilter());
+		gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MAG_FILTER, getTextureFilter());
 		gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_S, GL10.GL_CLAMP_TO_EDGE);
 		gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_T, GL10.GL_CLAMP_TO_EDGE);
 		gl.glTexEnvf(GL10.GL_TEXTURE_ENV, GL10.GL_TEXTURE_ENV_MODE, GL10.GL_MODULATE);
@@ -139,8 +142,8 @@ public class QuickTiGame2dTexture {
 	    gl10.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, 
 	    		QuickTiGame2dUtil.nextPowerOfTwo(width), QuickTiGame2dUtil.nextPowerOfTwo(height),
 	    		0, GL11.GL_RGB, GL11.GL_UNSIGNED_BYTE, null);
-	    gl11Ext.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, QuickTiGame2dGameView.textureFilter);
-	    gl11Ext.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, QuickTiGame2dGameView.textureFilter);
+	    gl11Ext.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, getTextureFilter());
+	    gl11Ext.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, getTextureFilter());
 	    gl11Ext.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, GL11.GL_CLAMP_TO_EDGE);
 	    gl11Ext.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, GL11.GL_CLAMP_TO_EDGE);
 	    
@@ -382,6 +385,19 @@ public class QuickTiGame2dTexture {
 
 	public float getMaxT() {
 	    return height / (float)glHeight;
+	}
+
+	public int getTextureFilter() {
+		if (useCustomFilter) {
+			return textureFilter;
+		} else {
+			return QuickTiGame2dGameView.textureFilter;
+		}
+	}
+
+	public void setTextureFilter(int textureFilter) {
+		this.useCustomFilter = true;
+		this.textureFilter = textureFilter;
 	}
 
 }
