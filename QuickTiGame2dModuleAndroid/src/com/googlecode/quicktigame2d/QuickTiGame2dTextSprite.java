@@ -31,6 +31,8 @@ import java.io.ByteArrayOutputStream;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import org.appcelerator.titanium.util.TiUIHelper;
+
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -42,7 +44,7 @@ import android.graphics.Typeface;
 public class QuickTiGame2dTextSprite extends QuickTiGame2dSprite {
 
 	private QuickTiGame2dTexture labelTexture = null;
-	private String text = "";
+	private String text = " ";
 	private String fontFace = "";
 	private float  fontSize = 0;
 	private boolean isBold = false;
@@ -72,20 +74,7 @@ public class QuickTiGame2dTextSprite extends QuickTiGame2dSprite {
     			forePaint.setTypeface(Typeface.DEFAULT_BOLD);
     		}
     	} else {
-    		Typeface typeface = Typeface.DEFAULT;
-    		String lowerCase = fontFace.toLowerCase();
-    		
-    		if (lowerCase.equals("serif")) {
-    			typeface = Typeface.SERIF;
-    		} else if (lowerCase.equals("sans_serif")) {
-    			typeface = Typeface.SANS_SERIF;
-    		} else if (lowerCase.equals("monospace")) {
-    			typeface = Typeface.MONOSPACE;
-    		} else if (fontFace.contains(".")) {
-        		typeface = Typeface.createFromAsset(view.getContext().getAssets(), fontFace);
-    		} else {
-        		typeface = Typeface.createFromAsset(view.getContext().getAssets(), fontFace + ".ttf");
-    		}
+    		Typeface typeface = TiUIHelper.toTypeface(view.getContext(), fontFace);
     		
     		if (isBold && isItalic) {
     			forePaint.setTypeface(Typeface.create(typeface, Typeface.BOLD_ITALIC));

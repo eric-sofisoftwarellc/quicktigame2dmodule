@@ -133,7 +133,7 @@
         labelTexture.width  = 1;
         labelTexture.height = 1;
         
-        self.text = @"";
+        self.text = @" ";
         self.fontFace = nil;
         self.fontSize = 0;
         
