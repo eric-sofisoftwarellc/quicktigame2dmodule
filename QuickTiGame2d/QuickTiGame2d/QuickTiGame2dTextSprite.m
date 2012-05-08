@@ -49,10 +49,21 @@
         font = [UIFont systemFontOfSize:fontSize];
     }
     
-    CGSize textSize = [text sizeWithFont:font]; 
+    CGSize textSize = CGSizeMake(1, 1);
+    
+    if (shouldUpdateWidth) {
+        if ([text length] == 0) {
+            textSize = [@" " sizeWithFont:font]; 
+        } else {
+            textSize = [text sizeWithFont:font]; 
+        }
+    } else {
+        textSize = CGSizeMake(width, height);
+    }
     
     int textWidth  = textSize.width;
     int textHeight = textSize.height;
+    
     NSUInteger blength = textWidth * textHeight * 4;
     
     GLubyte *bitmap = (GLubyte *)malloc(blength);
@@ -66,7 +77,7 @@
     UIGraphicsPushContext(context);
     
     [[UIColor whiteColor] set];
-    [text drawAtPoint:CGPointMake(0, 0) withFont:font];
+    [text drawInRect:CGRectMake(0, 0, textWidth, textHeight) withFont:font];
     
     UIGraphicsPopContext();
     
@@ -118,8 +129,15 @@
     }
     [super drawFrame];
 }
+
 -(void)onDispose {
     [super onDispose];
+}
+
+-(void)setWidth:(NSInteger)_width {
+    if (loaded) [self reload];
+    shouldUpdateWidth = FALSE;
+    [super setWidth:_width];
 }
 
 -(QuickTiGame2dTexture*)texture {
@@ -141,6 +159,7 @@
         [self color:0 green:0 blue:0];
         
         shouldReload = FALSE;
+        shouldUpdateWidth = TRUE;
     }
     return self;
 }

@@ -136,6 +136,7 @@ public class QuickTiGame2dTextSprite extends QuickTiGame2dSprite {
 	
 	@Override
 	public void setWidth(int width) {
+		if (loaded) reload();
 		shouldUpdateWidth = false;
 		this.width = width;
 	}

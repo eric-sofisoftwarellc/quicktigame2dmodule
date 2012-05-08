@@ -34,4 +34,6 @@
 @property (nonatomic, readwrite, assign) id fontFamily;
 @property (nonatomic, readwrite, assign) id fontSize;
 
+-(void)reload:(id)args;
+
 @end

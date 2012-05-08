@@ -34,6 +34,7 @@
     CGFloat   fontSize;
     
     BOOL shouldReload;
+    BOOL shouldUpdateWidth;
 }
 @property (readwrite, copy)   NSString* text;
 @property (readwrite, copy)   NSString* fontFamily;

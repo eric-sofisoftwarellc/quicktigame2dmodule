@@ -49,6 +49,10 @@
 
 #pragma Public APIs
 
+-(void)reload:(id)args {
+    [(QuickTiGame2dTextSprite*)sprite reload];
+}
+
 -(id)text {
     return ((QuickTiGame2dTextSprite*)sprite).text;
 }
