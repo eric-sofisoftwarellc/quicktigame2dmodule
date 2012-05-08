@@ -37,22 +37,29 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Paint.FontMetrics;
 import android.graphics.Paint.Style;
 import android.graphics.Typeface;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 
 public class QuickTiGame2dTextSprite extends QuickTiGame2dSprite {
 
 	private QuickTiGame2dTexture labelTexture = null;
-	private String text = " ";
+	private String text = "";
 	private String fontFamily = "";
 	private float  fontSize = 0;
 	private boolean isBold = false;
 	private boolean isItalic = false;
 	
 	private boolean shouldReload = false;
+	private boolean shouldUpdateWidth = true;
+	
+	private Layout.Alignment textAlign = Layout.Alignment.ALIGN_NORMAL;
 	
 	public QuickTiGame2dTextSprite() {
+		// default text color equals black
+		color(0, 0, 0);
 	}
 	
 	private void loadTextData(GL10 gl) {
@@ -64,7 +71,7 @@ public class QuickTiGame2dTextSprite extends QuickTiGame2dSprite {
 			labelTexture.setHeight(1);
 		}
 		
-		Paint forePaint = new Paint();
+		TextPaint forePaint = new TextPaint();
 		Paint backPaint = new Paint();
 		
     	if (fontFamily.length() == 0) {
@@ -92,15 +99,22 @@ public class QuickTiGame2dTextSprite extends QuickTiGame2dSprite {
     	backPaint.setColor(Color.TRANSPARENT);
     	backPaint.setStyle(Style.FILL);
 
-    	FontMetrics metrics = forePaint.getFontMetrics();
-    	int textWidth  = (int)Math.ceil(forePaint.measureText(getText()));
-    	int textHeight = (int)Math.ceil(Math.abs(metrics.ascent) + 
-    			Math.abs(metrics.descent) + Math.abs(metrics.leading));
+    	if (shouldUpdateWidth) {
+        	if (text.length() == 0) {
+        		width = (int)Math.ceil(forePaint.measureText(" "));
+        	} else {
+            	width  = (int)Math.ceil(forePaint.measureText(getText()));
+        	}
+    	}
+    	
+    	StaticLayout wrapLayout = new StaticLayout(text, forePaint, width, textAlign, 1, 1, false);
+    	int textWidth = wrapLayout.getWidth();
+    	int textHeight = wrapLayout.getHeight();
     	
     	Bitmap bitmap = Bitmap.createBitmap(textWidth, textHeight, Bitmap.Config.ARGB_8888);
     	Canvas canvas = new Canvas(bitmap);
     	canvas.drawRect(0, 0, textWidth, textHeight, backPaint);
-    	canvas.drawText(getText(), 0, textHeight - metrics.descent , forePaint);
+    	wrapLayout.draw(canvas);
 
     	ByteArrayOutputStream os = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, os);
@@ -112,12 +126,18 @@ public class QuickTiGame2dTextSprite extends QuickTiGame2dSprite {
         labelTexture.setHeight(textHeight);
         labelTexture.onLoad(gl, data);
         
-        setWidth(textWidth);
-        setHeight(textHeight);
+        this.width  = textWidth;
+        this.height = textHeight;
 	}
 	
 	public void reload() {
 		shouldReload = true;
+	}
+	
+	@Override
+	public void setWidth(int width) {
+		shouldUpdateWidth = false;
+		this.width = width;
 	}
 	
     @Override
@@ -173,5 +193,13 @@ public class QuickTiGame2dTextSprite extends QuickTiGame2dSprite {
 
 	public void setFontSize(float fontSize) {
 		this.fontSize = fontSize;
+	}
+
+	public Layout.Alignment getTextAlign() {
+		return textAlign;
+	}
+
+	public void setTextAlign(Layout.Alignment textAlign) {
+		this.textAlign = textAlign;
 	}
 }

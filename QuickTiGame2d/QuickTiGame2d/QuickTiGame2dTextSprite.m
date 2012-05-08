@@ -133,9 +133,12 @@
         labelTexture.width  = 1;
         labelTexture.height = 1;
         
-        self.text = @" ";
+        self.text = @"";
         self.fontFamily = nil;
         self.fontSize = 0;
+        
+        // default text color equals black
+        [self color:0 green:0 blue:0];
         
         shouldReload = FALSE;
     }
