@@ -26,7 +26,55 @@
 // EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // 
 #import "ComGooglecodeQuicktigame2dTextSpriteProxy.h"
+#import "QuickTiGame2dTextSprite.h"
+#import "TiUtils.h"
 
 @implementation ComGooglecodeQuicktigame2dTextSpriteProxy
+
+- (id)init {
+    self = [super init];
+    if (self != nil) {
+        // we don't want parent sprite instance so release it here.
+        [sprite release];
+        
+        // create our text instance
+        sprite = [[QuickTiGame2dTextSprite alloc] init];
+    }
+    return self;
+}
+
+- (void)dealloc {
+    [super dealloc];
+}
+
+#pragma Public APIs
+
+-(id)text {
+    return ((QuickTiGame2dTextSprite*)sprite).text;
+}
+
+-(void)setText:(id)value {
+    ((QuickTiGame2dTextSprite*)sprite).text = [[TiUtils stringValue:value] copy];
+    [(QuickTiGame2dTextSprite*)sprite reload];
+}
+
+-(id)fontFace {
+    return ((QuickTiGame2dTextSprite*)sprite).fontFace;
+}
+
+-(void)setFontFace:(id)value {
+    ((QuickTiGame2dTextSprite*)sprite).fontFace = [[TiUtils stringValue:value] copy];
+    [(QuickTiGame2dTextSprite*)sprite reload];
+}
+
+- (id)fontSize {
+    return NUMFLOAT(((QuickTiGame2dTextSprite*)sprite).fontSize);
+}
+
+- (void)setFontSize:(id)value {
+    ENSURE_SINGLE_ARG(value, NSNumber);
+    ((QuickTiGame2dTextSprite*)sprite).fontSize = [value floatValue];
+    [(QuickTiGame2dTextSprite*)sprite reload];
+}
 
 @end

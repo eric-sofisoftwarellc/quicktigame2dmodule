@@ -44,6 +44,10 @@
 		F944A326153DBE8F00CA94DC /* ComGooglecodeQuicktigame2dSpriteSheetProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F944A316153DBE8F00CA94DC /* ComGooglecodeQuicktigame2dSpriteSheetProxy.m */; };
 		F944A327153DBE8F00CA94DC /* ComGooglecodeQuicktigame2dTransformProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = F944A317153DBE8F00CA94DC /* ComGooglecodeQuicktigame2dTransformProxy.h */; };
 		F944A328153DBE8F00CA94DC /* ComGooglecodeQuicktigame2dTransformProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F944A318153DBE8F00CA94DC /* ComGooglecodeQuicktigame2dTransformProxy.m */; };
+		F96ADFD11557C884008CA8EA /* QuickTiGame2dTextSprite.h in Headers */ = {isa = PBXBuildFile; fileRef = F96ADFCF1557C884008CA8EA /* QuickTiGame2dTextSprite.h */; };
+		F96ADFD21557C884008CA8EA /* QuickTiGame2dTextSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = F96ADFD01557C884008CA8EA /* QuickTiGame2dTextSprite.m */; };
+		F96ADFD61557C8F6008CA8EA /* ComGooglecodeQuicktigame2dTextSpriteProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = F96ADFD41557C8F6008CA8EA /* ComGooglecodeQuicktigame2dTextSpriteProxy.h */; };
+		F96ADFD71557C8F6008CA8EA /* ComGooglecodeQuicktigame2dTextSpriteProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F96ADFD51557C8F6008CA8EA /* ComGooglecodeQuicktigame2dTextSpriteProxy.m */; };
 		F9D9C0D01540DD8400DAF450 /* ArrayStackQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = F9D9C0CE1540DD8400DAF450 /* ArrayStackQueue.h */; };
 		F9D9C0D11540DD8400DAF450 /* ArrayStackQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D9C0CF1540DD8400DAF450 /* ArrayStackQueue.m */; };
 		F9D9C0D41540DD8F00DAF450 /* ParticleDataReader.h in Headers */ = {isa = PBXBuildFile; fileRef = F9D9C0D21540DD8F00DAF450 /* ParticleDataReader.h */; };
@@ -106,6 +110,10 @@
 		F944A317153DBE8F00CA94DC /* ComGooglecodeQuicktigame2dTransformProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComGooglecodeQuicktigame2dTransformProxy.h; path = Classes/ComGooglecodeQuicktigame2dTransformProxy.h; sourceTree = "<group>"; };
 		F944A318153DBE8F00CA94DC /* ComGooglecodeQuicktigame2dTransformProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComGooglecodeQuicktigame2dTransformProxy.m; path = Classes/ComGooglecodeQuicktigame2dTransformProxy.m; sourceTree = "<group>"; };
 		F944A35C153DBF6700CA94DC /* app.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = app.js; path = example/app.js; sourceTree = "<group>"; };
+		F96ADFCF1557C884008CA8EA /* QuickTiGame2dTextSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuickTiGame2dTextSprite.h; path = ../QuickTiGame2d/QuickTiGame2d/QuickTiGame2dTextSprite.h; sourceTree = "<group>"; };
+		F96ADFD01557C884008CA8EA /* QuickTiGame2dTextSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuickTiGame2dTextSprite.m; path = ../QuickTiGame2d/QuickTiGame2d/QuickTiGame2dTextSprite.m; sourceTree = "<group>"; };
+		F96ADFD41557C8F6008CA8EA /* ComGooglecodeQuicktigame2dTextSpriteProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComGooglecodeQuicktigame2dTextSpriteProxy.h; path = Classes/ComGooglecodeQuicktigame2dTextSpriteProxy.h; sourceTree = "<group>"; };
+		F96ADFD51557C8F6008CA8EA /* ComGooglecodeQuicktigame2dTextSpriteProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComGooglecodeQuicktigame2dTextSpriteProxy.m; path = Classes/ComGooglecodeQuicktigame2dTextSpriteProxy.m; sourceTree = "<group>"; };
 		F9D9C0CE1540DD8400DAF450 /* ArrayStackQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArrayStackQueue.h; path = ../QuickTiGame2d/QuickTiGame2d/ArrayStackQueue.h; sourceTree = "<group>"; };
 		F9D9C0CF1540DD8400DAF450 /* ArrayStackQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArrayStackQueue.m; path = ../QuickTiGame2d/QuickTiGame2d/ArrayStackQueue.m; sourceTree = "<group>"; };
 		F9D9C0D21540DD8F00DAF450 /* ParticleDataReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParticleDataReader.h; path = ../QuickTiGame2d/QuickTiGame2d/ParticleDataReader.h; sourceTree = "<group>"; };
@@ -196,6 +204,8 @@
 				24DE9E1011C5FE74003F90F6 /* ComGooglecodeQuicktigame2dModuleAssets.mm */,
 				24DD6CF71134B3F500162E58 /* ComGooglecodeQuicktigame2dModule.h */,
 				24DD6CF81134B3F500162E58 /* ComGooglecodeQuicktigame2dModule.m */,
+				F96ADFD41557C8F6008CA8EA /* ComGooglecodeQuicktigame2dTextSpriteProxy.h */,
+				F96ADFD51557C8F6008CA8EA /* ComGooglecodeQuicktigame2dTextSpriteProxy.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -226,6 +236,8 @@
 				F9D9C0E11540DDA500DAF450 /* QuickTiGame2dScene.m */,
 				F9D9C0E21540DDA500DAF450 /* QuickTiGame2dSprite.h */,
 				F9D9C0E31540DDA500DAF450 /* QuickTiGame2dSprite.m */,
+				F96ADFCF1557C884008CA8EA /* QuickTiGame2dTextSprite.h */,
+				F96ADFD01557C884008CA8EA /* QuickTiGame2dTextSprite.m */,
 				F9D9C0E41540DDA500DAF450 /* QuickTiGame2dTexture.h */,
 				F9D9C0E51540DDA500DAF450 /* QuickTiGame2dTexture.m */,
 				F9D9C0E61540DDA500DAF450 /* QuickTiGame2dTransform.h */,
@@ -279,6 +291,8 @@
 				F9D9C0F81540DDA500DAF450 /* QuickTiGame2dTexture.h in Headers */,
 				F9D9C0FA1540DDA500DAF450 /* QuickTiGame2dTransform.h in Headers */,
 				F9D9C0FC1540DDA500DAF450 /* QuickTiGame2dUtil.h in Headers */,
+				F96ADFD11557C884008CA8EA /* QuickTiGame2dTextSprite.h in Headers */,
+				F96ADFD61557C8F6008CA8EA /* ComGooglecodeQuicktigame2dTextSpriteProxy.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +387,8 @@
 				F9D9C0F91540DDA500DAF450 /* QuickTiGame2dTexture.m in Sources */,
 				F9D9C0FB1540DDA500DAF450 /* QuickTiGame2dTransform.m in Sources */,
 				F9D9C0FD1540DDA500DAF450 /* QuickTiGame2dUtil.m in Sources */,
+				F96ADFD21557C884008CA8EA /* QuickTiGame2dTextSprite.m in Sources */,
+				F96ADFD71557C8F6008CA8EA /* ComGooglecodeQuicktigame2dTextSpriteProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

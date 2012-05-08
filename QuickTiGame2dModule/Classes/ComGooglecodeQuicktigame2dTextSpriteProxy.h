@@ -27,6 +27,11 @@
 // 
 #import "ComGooglecodeQuicktigame2dSpriteProxy.h"
 
-@interface ComGooglecodeQuicktigame2dTextSpriteProxy : ComGooglecodeQuicktigame2dSpriteProxy
+@interface ComGooglecodeQuicktigame2dTextSpriteProxy : ComGooglecodeQuicktigame2dSpriteProxy {
+    
+}
+@property (nonatomic, readwrite, assign) id text;
+@property (nonatomic, readwrite, assign) id fontFace;
+@property (nonatomic, readwrite, assign) id fontSize;
 
 @end

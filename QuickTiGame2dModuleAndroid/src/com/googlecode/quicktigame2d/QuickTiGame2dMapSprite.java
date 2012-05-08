@@ -90,6 +90,7 @@ public class QuickTiGame2dMapSprite extends QuickTiGame2dSprite {
 	    return true;
     }
     
+    @Override
 	public void onLoad(GL10 gl, QuickTiGame2dGameView view) {
 		if (loaded) return;
 		
@@ -102,7 +103,8 @@ public class QuickTiGame2dMapSprite extends QuickTiGame2dSprite {
 	    	createQuadBuffer(gl);
 	    }
 	}
-	
+
+    @Override
 	public void onDrawFrame(GL10 gl10, boolean fpsTimeElapsed) {
 		GL11 gl = (GL11)gl10;
 
@@ -201,20 +203,23 @@ public class QuickTiGame2dMapSprite extends QuickTiGame2dSprite {
 	    
 		gl.glDisableClientState(GL11.GL_COLOR_ARRAY);
 	}
-	
+
+    @Override
 	public void onDispose() {
 		super.onDispose();
 	}
 
+    @Override
 	protected void bindVertex(GL10 gl10) {
 	    // overwrite parent function..to do nothing
 	}
 	
 	// disable frame animation
+    @Override
 	public boolean setFrameIndex(int index, boolean force) {
 		return true;
 	}
-	
+
 	private void createQuadBuffer(GL10 gl10) {
 	    
 		GL11 gl = (GL11)gl10;
@@ -611,7 +616,8 @@ public class QuickTiGame2dMapSprite extends QuickTiGame2dSprite {
 	        tileTiltFactorY = 1.0f;
 	    }
 	}
-	
+
+	@Override
 	public void setAlpha(float alpha) {
 		super.setAlpha(alpha);
 		for (int i = 0; i < tiles.size(); i++) {
