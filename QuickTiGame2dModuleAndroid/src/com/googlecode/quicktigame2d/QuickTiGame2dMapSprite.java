@@ -137,9 +137,7 @@ public class QuickTiGame2dMapSprite extends QuickTiGame2dSprite {
 						QuickTiGame2dMapTile updatedTile = getTile(index);
 						updatedTile.gid = animation.getNextIndex(tileCount, updatedTile.gid);
 						
-					    synchronized (updatedTiles) {
-					    	setTile(index, updatedTile);
-					    }
+					    setTile(index, updatedTile);
 					}
 					animation.setLastOnAnimationInterval(uptime);
 				}
@@ -498,7 +496,9 @@ public class QuickTiGame2dMapSprite extends QuickTiGame2dSprite {
 	        }
 	    }
 		
-		updatedTiles.put(Integer.valueOf(index), tile);
+	    synchronized(updatedTiles) {
+	    	updatedTiles.put(Integer.valueOf(index), tile);
+	    }
 	}
 
 	public void setTiles(List<Integer> data) {
@@ -517,7 +517,9 @@ public class QuickTiGame2dMapSprite extends QuickTiGame2dSprite {
 	    QuickTiGame2dMapTile tile = tiles.get(index);
 	    tile.alpha = 0;
 	    
-	    updatedTiles.put(Integer.valueOf(index), tile);
+	    synchronized(updatedTiles) {
+	    	updatedTiles.put(Integer.valueOf(index), tile);
+	    }
 	    
 	    return true;
 	}
@@ -528,7 +530,9 @@ public class QuickTiGame2dMapSprite extends QuickTiGame2dSprite {
 	    QuickTiGame2dMapTile tile = tiles.get(index);
 	    tile.flip = !tile.flip;
 	    
-	    updatedTiles.put(Integer.valueOf(index), tile);
+	    synchronized(updatedTiles) {
+	    	updatedTiles.put(Integer.valueOf(index), tile);
+	    }
 	    
 	    return true;
 	}
