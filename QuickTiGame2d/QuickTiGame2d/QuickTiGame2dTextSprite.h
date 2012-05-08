@@ -30,13 +30,13 @@
 @interface QuickTiGame2dTextSprite : QuickTiGame2dSprite {
     QuickTiGame2dTexture* labelTexture;
     NSString* text;
-    NSString* fontFace;
+    NSString* fontFamily;
     CGFloat   fontSize;
     
     BOOL shouldReload;
 }
 @property (readwrite, copy)   NSString* text;
-@property (readwrite, copy)   NSString* fontFace;
+@property (readwrite, copy)   NSString* fontFamily;
 @property (readwrite)         CGFloat   fontSize;
 @property (readonly)          CGFloat   systemFontSize;
 

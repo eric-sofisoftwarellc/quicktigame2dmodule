@@ -31,7 +31,7 @@
     
 }
 @property (nonatomic, readwrite, assign) id text;
-@property (nonatomic, readwrite, assign) id fontFace;
+@property (nonatomic, readwrite, assign) id fontFamily;
 @property (nonatomic, readwrite, assign) id fontSize;
 
 @end

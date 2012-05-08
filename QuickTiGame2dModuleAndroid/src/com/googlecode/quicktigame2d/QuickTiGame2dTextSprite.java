@@ -45,7 +45,7 @@ public class QuickTiGame2dTextSprite extends QuickTiGame2dSprite {
 
 	private QuickTiGame2dTexture labelTexture = null;
 	private String text = " ";
-	private String fontFace = "";
+	private String fontFamily = "";
 	private float  fontSize = 0;
 	private boolean isBold = false;
 	private boolean isItalic = false;
@@ -67,14 +67,14 @@ public class QuickTiGame2dTextSprite extends QuickTiGame2dSprite {
 		Paint forePaint = new Paint();
 		Paint backPaint = new Paint();
 		
-    	if (fontFace.length() == 0) {
+    	if (fontFamily.length() == 0) {
     		if (isBold && isItalic) {
     			forePaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD_ITALIC));
     		} else if (isBold) {
     			forePaint.setTypeface(Typeface.DEFAULT_BOLD);
     		}
     	} else {
-    		Typeface typeface = TiUIHelper.toTypeface(view.getContext(), fontFace);
+    		Typeface typeface = TiUIHelper.toTypeface(view.getContext(), fontFamily);
     		
     		if (isBold && isItalic) {
     			forePaint.setTypeface(Typeface.create(typeface, Typeface.BOLD_ITALIC));
@@ -159,12 +159,12 @@ public class QuickTiGame2dTextSprite extends QuickTiGame2dSprite {
 		this.text = text;
 	}
 
-	public String getFontFace() {
-		return fontFace;
+	public String getFontFamily() {
+		return fontFamily;
 	}
 
-	public void setFontFace(String fontFace) {
-		this.fontFace = fontFace;
+	public void setFontFamily(String fontFace) {
+		this.fontFamily = fontFace;
 	}
 
 	public float getFontSize() {

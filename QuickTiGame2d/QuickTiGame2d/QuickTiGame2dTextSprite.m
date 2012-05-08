@@ -33,7 +33,7 @@
 @end
 
 @implementation QuickTiGame2dTextSprite
-@synthesize text, fontSize, fontFace;
+@synthesize text, fontSize, fontFamily;
 
 -(CGFloat)systemFontSize {
     return [UIFont systemFontSize];
@@ -42,9 +42,9 @@
 -(void)loadTextData {
     UIFont* font = [UIFont systemFontOfSize:[UIFont systemFontSize]];
     
-    if ([fontFace length] > 0) {
+    if ([fontFamily length] > 0) {
         NSInteger size = fontSize > 0 ? fontSize : [UIFont systemFontSize];
-        font = [UIFont fontWithName:fontFace size:size];
+        font = [UIFont fontWithName:fontFamily size:size];
     } else if (fontSize > 0) {
         font = [UIFont systemFontOfSize:fontSize];
     }
@@ -134,7 +134,7 @@
         labelTexture.height = 1;
         
         self.text = @" ";
-        self.fontFace = nil;
+        self.fontFamily = nil;
         self.fontSize = 0;
         
         shouldReload = FALSE;

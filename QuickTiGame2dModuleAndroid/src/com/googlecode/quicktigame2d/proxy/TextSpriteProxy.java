@@ -54,8 +54,8 @@ public class TextSpriteProxy extends SpriteProxy {
     	if (options.containsKey("text")) {
     		setText(options.getString("text"));
     	}
-    	if (options.containsKey("fontFace")) {
-    		setFontFace(options.getString("fontFace"));
+    	if (options.containsKey("fontFamily")) {
+    		setFontFamily(options.getString("fontFamily"));
     	}
     	if (options.containsKey("fontSize")) {
     		setFontSize(options.getDouble("fontSize").floatValue());
@@ -74,13 +74,13 @@ public class TextSpriteProxy extends SpriteProxy {
 	}
 	
 	@Kroll.getProperty @Kroll.method
-	public String getFontFace() {
-		return getTextSprite().getFontFace();
+	public String getFontFamily() {
+		return getTextSprite().getFontFamily();
 	}
 	
 	@Kroll.setProperty @Kroll.method
-	public void setFontFace(String fontFace) {
-		getTextSprite().setFontFace(fontFace);
+	public void setFontFamily(String fontFace) {
+		getTextSprite().setFontFamily(fontFace);
 		getTextSprite().reload();
 	}
 	

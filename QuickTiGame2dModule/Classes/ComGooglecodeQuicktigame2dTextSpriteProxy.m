@@ -58,12 +58,12 @@
     [(QuickTiGame2dTextSprite*)sprite reload];
 }
 
--(id)fontFace {
-    return ((QuickTiGame2dTextSprite*)sprite).fontFace;
+-(id)fontFamily {
+    return ((QuickTiGame2dTextSprite*)sprite).fontFamily;
 }
 
--(void)setFontFace:(id)value {
-    ((QuickTiGame2dTextSprite*)sprite).fontFace = [[TiUtils stringValue:value] copy];
+-(void)setFontFamily:(id)value {
+    ((QuickTiGame2dTextSprite*)sprite).fontFamily = [[TiUtils stringValue:value] copy];
     [(QuickTiGame2dTextSprite*)sprite reload];
 }
 
