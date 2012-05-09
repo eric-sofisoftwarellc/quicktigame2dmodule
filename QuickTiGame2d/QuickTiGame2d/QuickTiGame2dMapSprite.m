@@ -198,9 +198,7 @@
                     QuickTiGame2dMapTile* updateTileCache = [self getTile:index];
                     updateTileCache.gid = [animation getNextIndex:tileCount withIndex:updateTileCache.gid];
                     
-                    @synchronized (updatedTiles) {
-                        [self setTile:index tile:updateTileCache];
-                    }
+                    [self setTile:index tile:updateTileCache];
                 }
                 animation.lastOnAnimationInterval = uptime;
             }
@@ -547,7 +545,9 @@
         }
     }
     
-    [updatedTiles setObject:tile forKey:[NSNumber numberWithInt:index]];
+    @synchronized (updatedTiles) {
+        [updatedTiles setObject:tile forKey:[NSNumber numberWithInt:index]];
+    }
 }
 
 -(void)setTiles:(NSArray*)data {
@@ -572,7 +572,9 @@
     QuickTiGame2dMapTile* tile = [tiles objectAtIndex:index];
     tile.alpha = 0;
     
-    [updatedTiles setObject:tile forKey:[NSNumber numberWithInt:index]];
+    @synchronized (updatedTiles) {
+        [updatedTiles setObject:tile forKey:[NSNumber numberWithInt:index]];
+    }
     
     return TRUE;
 }
@@ -583,7 +585,9 @@
     QuickTiGame2dMapTile* tile = [tiles objectAtIndex:index];
     tile.flip = !tile.flip;
     
-    [updatedTiles setObject:tile forKey:[NSNumber numberWithInt:index]];
+    @synchronized (updatedTiles) {
+        [updatedTiles setObject:tile forKey:[NSNumber numberWithInt:index]];
+    }
     
     return TRUE;
 }
