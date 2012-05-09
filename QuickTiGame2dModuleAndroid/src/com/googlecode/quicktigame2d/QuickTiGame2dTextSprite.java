@@ -204,4 +204,20 @@ public class QuickTiGame2dTextSprite extends QuickTiGame2dSprite {
 	public void setTextAlign(Layout.Alignment textAlign) {
 		this.textAlign = textAlign;
 	}
+	
+	public void setBold(boolean isBold) {
+		this.isBold = isBold;
+	}
+	
+	public boolean isBold() {
+		return this.isBold;
+	}
+	
+	public void setItalic(boolean isItalic) {
+		this.isItalic = isItalic;
+	}
+	
+	public boolean isItalic() {
+		return isItalic;
+	}
 }

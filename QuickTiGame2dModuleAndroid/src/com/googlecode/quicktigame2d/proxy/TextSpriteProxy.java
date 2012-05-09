@@ -60,6 +60,12 @@ public class TextSpriteProxy extends SpriteProxy {
     	if (options.containsKey("fontSize")) {
     		setFontSize(options.getDouble("fontSize").floatValue());
     	}
+    	if (options.containsKey("fontWeight")) {
+    		setFontWeight(options.getString("fontWeight"));
+    	}
+    	if (options.containsKey("fontStyle")) {
+    		setFontStyle(options.getString("fontStyle"));
+    	}
     }
 	
 	@Kroll.getProperty @Kroll.method
@@ -70,6 +76,36 @@ public class TextSpriteProxy extends SpriteProxy {
 	@Kroll.setProperty @Kroll.method
 	public void setText(String text) {
 		getTextSprite().setText(text);
+		getTextSprite().reload();
+	}
+
+	@Kroll.getProperty @Kroll.method
+	public String getFontWeight() {
+		return getTextSprite().isBold() ? "bold" : "normal";
+	}
+	
+	@Kroll.setProperty @Kroll.method
+	public void setFontWeight(String weight) {
+		if (weight.toLowerCase().equals("bold")) {
+			getTextSprite().setBold(true);
+		} else {
+			getTextSprite().setBold(false);
+		}
+		getTextSprite().reload();
+	}
+	
+	@Kroll.getProperty @Kroll.method
+	public String getFontStyle() {
+		return getTextSprite().isItalic() ? "italic" : "normal";
+	}
+	
+	@Kroll.setProperty @Kroll.method
+	public void setFontStyle(String style) {
+		if (style.toLowerCase().equals("italic")) {
+			getTextSprite().setItalic(true);
+		} else {
+			getTextSprite().setItalic(false);
+		}
 		getTextSprite().reload();
 	}
 	
