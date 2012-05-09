@@ -35,12 +35,14 @@
     self = [super init];
     if (self != nil) {
         sprite = [[QuickTiGame2dSprite alloc] init];
+        centerInfoCache = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
 
 - (void)dealloc {
     [sprite release];
+    [centerInfoCache release];
     [super dealloc];
 }
 
@@ -286,6 +288,21 @@
 - (void)setAlpha:(id)value {
     ENSURE_SINGLE_ARG(value, NSNumber);
     sprite.alpha = [value floatValue];
+}
+
+- (id)center {
+    [centerInfoCache setValue:NUMFLOAT(sprite.x + (sprite.width  * 0.5f)) forKey:@"x"];
+    [centerInfoCache setValue:NUMFLOAT(sprite.y + (sprite.height * 0.5f)) forKey:@"y"];
+    return centerInfoCache;
+}
+
+- (void)setCenter:(id)value {
+    ENSURE_SINGLE_ARG(value, NSDictionary);
+    float x  = [TiUtils floatValue:@"x"  properties:value  def:0];
+    float y  = [TiUtils floatValue:@"y"  properties:value  def:0];
+    
+    if ([value objectForKey:@"x"] != nil) sprite.x = x - (sprite.width  * 0.5f);
+    if ([value objectForKey:@"y"] != nil) sprite.y = y - (sprite.height * 0.5f);
 }
 
 -(void)show:(id)args {

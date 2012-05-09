@@ -30,6 +30,7 @@
 
 @interface ComGooglecodeQuicktigame2dSpriteProxy : TiProxy {
     QuickTiGame2dSprite* sprite;
+    NSMutableDictionary* centerInfoCache;
 }
 @property (nonatomic, readwrite, assign) id image;
 @property (nonatomic, readwrite, assign) id width;
@@ -41,6 +42,7 @@
 @property (nonatomic, readwrite, assign) id alpha;
 @property (nonatomic, readwrite, assign) id scaleX;
 @property (nonatomic, readwrite, assign) id scaleY;
+@property (nonatomic, readwrite, assign) id center;
 
 - (QuickTiGame2dSprite*)sprite;
 - (void)onNotification:(NSString*)type userInfo:(NSDictionary*)userInfo;

@@ -28,10 +28,12 @@
 package com.googlecode.quicktigame2d.proxy;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.KrollProxy;
 import org.appcelerator.kroll.annotations.Kroll;
+import org.appcelerator.titanium.util.TiConvert;
 
 import com.googlecode.quicktigame2d.QuickTiGame2dSprite;
 import com.googlecode.quicktigame2d.Quicktigame2dModule;
@@ -42,6 +44,7 @@ import android.util.Log;
 public class SpriteProxy extends KrollProxy {
 	protected QuickTiGame2dSprite sprite;
 	protected ArrayList<TransformProxy> transforms = new ArrayList<TransformProxy>();
+	protected HashMap<String, Object> centerInfoCache = new HashMap<String, Object>();
 	
 	public SpriteProxy() {
 		sprite = new QuickTiGame2dSprite();
@@ -377,5 +380,26 @@ public class SpriteProxy extends KrollProxy {
 	@Kroll.setProperty @Kroll.method
 	public void setScaleY(float value) {
 		sprite.setScaleY(value);
+	}
+	
+	@Kroll.setProperty @Kroll.method
+	public void setCenter(@SuppressWarnings("rawtypes") HashMap info) {
+		if (info.containsKey("x")) {
+			float x = (float)TiConvert.toDouble(info.get("x"));
+			sprite.setX(x - (sprite.getWidth() * 0.5f));
+		}
+		if (info.containsKey("y")) {
+			float y = (float)TiConvert.toDouble(info.get("y"));
+			sprite.setY(y - (sprite.getHeight() * 0.5f));
+		}
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@Kroll.getProperty @Kroll.method
+	public HashMap getCenter() {
+		centerInfoCache.put("x" , sprite.getX() + (sprite.getWidth()  * 0.5));
+		centerInfoCache.put("y" , sprite.getY() + (sprite.getHeight() * 0.5));
+		
+		return centerInfoCache;
 	}
 }
