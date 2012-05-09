@@ -33,6 +33,7 @@
 @property (nonatomic, readwrite, assign) id text;
 @property (nonatomic, readwrite, assign) id fontFamily;
 @property (nonatomic, readwrite, assign) id fontSize;
+@property (nonatomic, readwrite, assign) id textAlign;
 
 -(void)reload:(id)args;
 

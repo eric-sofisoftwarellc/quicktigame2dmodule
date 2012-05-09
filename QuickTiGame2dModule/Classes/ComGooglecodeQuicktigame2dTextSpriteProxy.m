@@ -81,4 +81,13 @@
     [(QuickTiGame2dTextSprite*)sprite reload];
 }
 
+-(id)textAlign {
+    return NUMINT(((QuickTiGame2dTextSprite*)sprite).textAlignment);
+}
+
+-(void)setTextAlign:(id)value {
+    [(QuickTiGame2dTextSprite*)sprite setTextAlignment:[TiUtils textAlignmentValue:value]];
+    [(QuickTiGame2dTextSprite*)sprite reload];
+}
+
 @end

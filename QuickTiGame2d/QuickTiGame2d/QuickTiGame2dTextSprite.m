@@ -33,7 +33,7 @@
 @end
 
 @implementation QuickTiGame2dTextSprite
-@synthesize text, fontSize, fontFamily;
+@synthesize text, fontSize, fontFamily, textAlignment;
 
 -(CGFloat)systemFontSize {
     return [UIFont systemFontSize];
@@ -77,7 +77,8 @@
     UIGraphicsPushContext(context);
     
     [[UIColor whiteColor] set];
-    [text drawInRect:CGRectMake(0, 0, textWidth, textHeight) withFont:font];
+    [text drawInRect:CGRectMake(0, 0, textWidth, textHeight) withFont:font
+       lineBreakMode:UILineBreakModeWordWrap alignment:textAlignment];
     
     UIGraphicsPopContext();
     
@@ -161,6 +162,8 @@
         
         shouldReload = FALSE;
         shouldUpdateWidth = TRUE;
+        
+        textAlignment = UITextAlignmentLeft;
     }
     return self;
 }

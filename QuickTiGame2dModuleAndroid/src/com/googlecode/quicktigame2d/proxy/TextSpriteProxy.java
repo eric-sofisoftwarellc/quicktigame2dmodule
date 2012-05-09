@@ -30,6 +30,8 @@ package com.googlecode.quicktigame2d.proxy;
 import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.annotations.Kroll;
 
+import android.text.Layout;
+
 import com.googlecode.quicktigame2d.QuickTiGame2dTextSprite;
 import com.googlecode.quicktigame2d.Quicktigame2dModule;
 
@@ -130,4 +132,33 @@ public class TextSpriteProxy extends SpriteProxy {
 		getTextSprite().setFontSize(fontSize);
 		getTextSprite().reload();
 	}
+
+	@Kroll.getProperty @Kroll.method
+	public String getTextAlign() {
+		Layout.Alignment align = getTextSprite().getTextAlign();
+		if (align == Layout.Alignment.ALIGN_OPPOSITE) {
+			return "right";
+		} else if (align == Layout.Alignment.ALIGN_CENTER) {
+			return "center";
+		} else {
+			return "left";
+		}
+	}
+	
+	@Kroll.setProperty @Kroll.method
+	public void setTextAlign(String value) {
+		Layout.Alignment align = getTextSprite().getTextAlign();
+		
+		if (value.equals("right")) {
+			align = Layout.Alignment.ALIGN_OPPOSITE;
+		} else if (value.equals("center")) {
+			align = Layout.Alignment.ALIGN_CENTER;
+		} else {
+			align = Layout.Alignment.ALIGN_NORMAL;
+		}
+		
+		getTextSprite().setTextAlign(align);
+		getTextSprite().reload();
+	}
+
 }

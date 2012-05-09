@@ -251,7 +251,7 @@
     if (useCustomFilter) {
         return textureFilter;
     } else {
-        [QuickTiGame2dEngine textureFilter];
+        return [QuickTiGame2dEngine textureFilter];
     }
 }
 

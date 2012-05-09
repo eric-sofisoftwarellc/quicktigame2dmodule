@@ -26,6 +26,7 @@
 // EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // 
 #import "QuickTiGame2dSprite.h"
+#import <UIKit/UIKit.h>
 
 @interface QuickTiGame2dTextSprite : QuickTiGame2dSprite {
     QuickTiGame2dTexture* labelTexture;
@@ -35,11 +36,14 @@
     
     BOOL shouldReload;
     BOOL shouldUpdateWidth;
+    
+    UITextAlignment textAlignment;
 }
 @property (readwrite, copy)   NSString* text;
 @property (readwrite, copy)   NSString* fontFamily;
 @property (readwrite)         CGFloat   fontSize;
 @property (readonly)          CGFloat   systemFontSize;
+@property (readwrite)         UITextAlignment textAlignment;
 
 -(void)reload;
 -(void)onLoad;

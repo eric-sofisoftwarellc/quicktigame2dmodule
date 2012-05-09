@@ -48,6 +48,7 @@
 		F96ADFD21557C884008CA8EA /* QuickTiGame2dTextSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = F96ADFD01557C884008CA8EA /* QuickTiGame2dTextSprite.m */; };
 		F96ADFD61557C8F6008CA8EA /* ComGooglecodeQuicktigame2dTextSpriteProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = F96ADFD41557C8F6008CA8EA /* ComGooglecodeQuicktigame2dTextSpriteProxy.h */; };
 		F96ADFD71557C8F6008CA8EA /* ComGooglecodeQuicktigame2dTextSpriteProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F96ADFD51557C8F6008CA8EA /* ComGooglecodeQuicktigame2dTextSpriteProxy.m */; };
+		F97F53D1155A52E80000C575 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F97F53D0155A52E80000C575 /* UIKit.framework */; };
 		F9D9C0D01540DD8400DAF450 /* ArrayStackQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = F9D9C0CE1540DD8400DAF450 /* ArrayStackQueue.h */; };
 		F9D9C0D11540DD8400DAF450 /* ArrayStackQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D9C0CF1540DD8400DAF450 /* ArrayStackQueue.m */; };
 		F9D9C0D41540DD8F00DAF450 /* ParticleDataReader.h in Headers */ = {isa = PBXBuildFile; fileRef = F9D9C0D21540DD8F00DAF450 /* ParticleDataReader.h */; };
@@ -114,6 +115,7 @@
 		F96ADFD01557C884008CA8EA /* QuickTiGame2dTextSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuickTiGame2dTextSprite.m; path = ../QuickTiGame2d/QuickTiGame2d/QuickTiGame2dTextSprite.m; sourceTree = "<group>"; };
 		F96ADFD41557C8F6008CA8EA /* ComGooglecodeQuicktigame2dTextSpriteProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComGooglecodeQuicktigame2dTextSpriteProxy.h; path = Classes/ComGooglecodeQuicktigame2dTextSpriteProxy.h; sourceTree = "<group>"; };
 		F96ADFD51557C8F6008CA8EA /* ComGooglecodeQuicktigame2dTextSpriteProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComGooglecodeQuicktigame2dTextSpriteProxy.m; path = Classes/ComGooglecodeQuicktigame2dTextSpriteProxy.m; sourceTree = "<group>"; };
+		F97F53D0155A52E80000C575 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F9D9C0CE1540DD8400DAF450 /* ArrayStackQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArrayStackQueue.h; path = ../QuickTiGame2d/QuickTiGame2d/ArrayStackQueue.h; sourceTree = "<group>"; };
 		F9D9C0CF1540DD8400DAF450 /* ArrayStackQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArrayStackQueue.m; path = ../QuickTiGame2d/QuickTiGame2d/ArrayStackQueue.m; sourceTree = "<group>"; };
 		F9D9C0D21540DD8F00DAF450 /* ParticleDataReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParticleDataReader.h; path = ../QuickTiGame2d/QuickTiGame2d/ParticleDataReader.h; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F97F53D1155A52E80000C575 /* UIKit.framework in Frameworks */,
 				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -176,6 +179,7 @@
 		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F97F53D0155A52E80000C575 /* UIKit.framework */,
 				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
 			);
 			name = Frameworks;
