@@ -171,6 +171,11 @@
 -(void)dealloc {
     [labelTexture release];
     [text release];
+    
+    labelTexture = nil;
+    text         = nil;
+    hasTexture   = FALSE;
+    
     [super dealloc];
 }
 @end
