@@ -1,2 +1,7 @@
 Version 1.0 RC5 (released 2012-04-17)
   . Add support for Titanium Mobile 2.0.1 GA
+Version 1.0 (released 2012-05-07)
+Version 1.1 (released 2012-05-14)
+  . Add: TextSprite that can render text strings
+  . Fix: MapSprite cause concurrent exception on Android
+  . Fix: game.screen returns retina resolution on non-retina devices with iOS 4

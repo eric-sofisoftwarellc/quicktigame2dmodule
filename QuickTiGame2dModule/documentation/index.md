@@ -2,7 +2,7 @@
 
 ## Description
 
-2D Game Engine Module for Titanium Mobile
+2D Game Engine Module for Titanium Mobile http://code.google.com/p/quicktigame2d/
 
 ## INSTALL QuickTiGame2d MODULE
 
@@ -12,7 +12,7 @@
 
 ```
 <modules>
-  <module version="1.0">com.googlecode.quicktigame2d</module>
+  <module version="1.1">com.googlecode.quicktigame2d</module>
 </modules>
 ```
 
