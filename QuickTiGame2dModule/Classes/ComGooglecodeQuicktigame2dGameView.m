@@ -189,6 +189,7 @@
 }
 
 - (void)layoutSubviews {
+    if (currentlyAnimating) return;
     if ([self debug]) NSLog(@"[DEBUG] GameView layoutSubviews");
     
     [EAGLContext setCurrentContext:context];
