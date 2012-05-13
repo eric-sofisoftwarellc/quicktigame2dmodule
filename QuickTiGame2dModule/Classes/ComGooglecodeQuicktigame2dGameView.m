@@ -80,7 +80,7 @@
         [EAGLContext setCurrentContext:context];
         
 		// detect retina display
-		if (![TiUtils isIPad] && [TiUtils isRetinaDisplay]) {
+		if ([TiUtils isRetinaDisplay]) {
 			self.contentScaleFactor  = RETINA_SCALE_FACTOR;
 			self.layer.contentsScale = RETINA_SCALE_FACTOR;
 		}
