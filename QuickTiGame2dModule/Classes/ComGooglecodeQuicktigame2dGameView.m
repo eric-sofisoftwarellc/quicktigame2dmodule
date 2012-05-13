@@ -80,8 +80,7 @@
         [EAGLContext setCurrentContext:context];
         
 		// detect retina display
-		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone && 
-                        UIGraphicsBeginImageContextWithOptions != NULL) {
+		if (![TiUtils isIPad] && [TiUtils isRetinaDisplay]) {
 			self.contentScaleFactor  = RETINA_SCALE_FACTOR;
 			self.layer.contentsScale = RETINA_SCALE_FACTOR;
 		}
