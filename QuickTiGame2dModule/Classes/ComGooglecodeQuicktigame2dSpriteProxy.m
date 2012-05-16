@@ -363,4 +363,58 @@
     [sprite addChildWithRelativePosition:[args sprite]];
 }
 
+- (id)followParentTransformSize {
+    return NUMBOOL(sprite.followParentTransformSize);
+}
+
+- (void)setFollowParentTransformSize:(id)value {
+    ENSURE_SINGLE_ARG(value, NSNumber);
+    sprite.followParentTransformSize = [value boolValue];
+}
+
+- (id)followParentTransformPosition {
+    return NUMBOOL(sprite.followParentTransformPosition);
+}
+
+- (void)setFollowParentTransformPosition:(id)value {
+    ENSURE_SINGLE_ARG(value, NSNumber);
+    sprite.followParentTransformPosition = [value boolValue];
+}
+
+- (id)followParentTransformRotation {
+    return NUMBOOL(sprite.followParentTransformRotation);
+}
+
+- (void)setFollowParentTransformRotation:(id)value {
+    ENSURE_SINGLE_ARG(value, NSNumber);
+    sprite.followParentTransformRotation = [value boolValue];
+}
+
+- (id)followParentTransformScale {
+    return NUMBOOL(sprite.followParentTransformScale);
+}
+
+- (void)setFollowParentTransformScale:(id)value {
+    ENSURE_SINGLE_ARG(value, NSNumber);
+    sprite.followParentTransformScale = [value boolValue];
+}
+
+- (id)followParentTransformColor {
+    return NUMBOOL(sprite.followParentTransformColor);
+}
+
+- (void)setFollowParentTransformColor:(id)value {
+    ENSURE_SINGLE_ARG(value, NSNumber);
+    sprite.followParentTransformColor = [value boolValue];
+}
+
+- (id)followParentTransformFrameIndex {
+    return NUMBOOL(sprite.followParentTransformFrameIndex);
+}
+
+- (void)setFollowParentTransformFrameIndex:(id)value {
+    ENSURE_SINGLE_ARG(value, NSNumber);
+    sprite.followParentTransformFrameIndex = [value boolValue];
+}
+
 @end

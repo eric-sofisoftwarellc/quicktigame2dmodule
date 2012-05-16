@@ -96,6 +96,13 @@
     BOOL  relativeToTransformParent;
     float relativeToTransformParentX;
     float relativeToTransformParentY;
+    
+    BOOL  followParentTransformPosition;
+    BOOL  followParentTransformRotation;
+    BOOL  followParentTransformScale;
+    BOOL  followParentTransformSize;
+    BOOL  followParentTransformColor;
+    BOOL  followParentTransformFrameIndex;
 }
 @property (readonly) BOOL hasTexture;
 @property (readonly) NSInteger frameCount;
@@ -124,6 +131,12 @@
 @property (readwrite) float relativeToTransformParentX;
 @property (readwrite) float relativeToTransformParentY;
 @property (readonly) QuickTiGame2dTexture* texture;
+@property (readwrite) BOOL  followParentTransformPosition;
+@property (readwrite) BOOL  followParentTransformRotation;
+@property (readwrite) BOOL  followParentTransformScale;
+@property (readwrite) BOOL  followParentTransformSize;
+@property (readwrite) BOOL  followParentTransformColor;
+@property (readwrite) BOOL  followParentTransformFrameIndex;
 
 -(void)onLoad;
 -(void)bindVertex;

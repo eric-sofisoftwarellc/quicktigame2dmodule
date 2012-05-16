@@ -108,6 +108,13 @@ public class QuickTiGame2dSprite {
     protected float   relativeToTransformParentX;
     protected float   relativeToTransformParentY;
     
+    protected boolean followParentTransformPosition   = true;
+	protected boolean followParentTransformRotation   = true;
+    protected boolean followParentTransformScale      = true;
+    protected boolean followParentTransformSize       = true;
+    protected boolean followParentTransformColor      = true;
+    protected boolean followParentTransformFrameIndex = false;
+    
 	public QuickTiGame2dSprite() {
         // color param RGBA
         param_color[0] = 1.0f;
@@ -954,46 +961,46 @@ public class QuickTiGame2dSprite {
 	    transform.apply();
 	    
 	    if (isChild && relativeToTransformParent) {
-	    	if (transform.getX() != null) x = transform.getCurrent_x() + relativeToTransformParentX;
-	    	if (transform.getY() != null) y = transform.getCurrent_y() + relativeToTransformParentY;
+	    	if (transform.getX() != null && (!isChild || followParentTransformPosition)) x = transform.getCurrent_x() + relativeToTransformParentX;
+	    	if (transform.getY() != null && (!isChild || followParentTransformPosition)) y = transform.getCurrent_y() + relativeToTransformParentY;
 	    } else {
-	    	if (transform.getX() != null) x = transform.getCurrent_x();
-	    	if (transform.getY() != null) y = transform.getCurrent_y();
+	    	if (transform.getX() != null && (!isChild || followParentTransformPosition)) x = transform.getCurrent_x();
+	    	if (transform.getY() != null && (!isChild || followParentTransformPosition)) y = transform.getCurrent_y();
 	    }
 	    
-	    if (transform.getZ() != null) z = transform.getCurrent_z();
-	    if (transform.getWidth()  != null) width  = transform.getCurrent_width();
-	    if (transform.getHeight() != null) height = transform.getCurrent_height();
-	    if (transform.getFrameIndex() != null) frameIndex = transform.getCurrent_frameIndex();
+	    if (transform.getZ() != null && (!isChild || followParentTransformPosition)) z = transform.getCurrent_z();
+	    if (transform.getWidth()  != null && (!isChild || followParentTransformSize)) width  = transform.getCurrent_width();
+	    if (transform.getHeight() != null && (!isChild || followParentTransformSize)) height = transform.getCurrent_height();
+	    if (transform.getFrameIndex() != null && (!isChild || followParentTransformFrameIndex)) frameIndex = transform.getCurrent_frameIndex();
 	    
-	    if (transform.getAngle() != null) {
+	    if (transform.getAngle() != null && (!isChild || followParentTransformRotation)) {
 	        rotate(transform.getCurrent_angle());
 	    }
-        if (transform.getRotate_axis() != null) {
+        if (transform.getRotate_axis() != null && (!isChild || followParentTransformRotation)) {
             param_rotate[4] = transform.getRotate_axis().intValue();
         }
-        if (transform.getRotate_centerX() != null) {
+        if (transform.getRotate_centerX() != null && (!isChild || followParentTransformRotation)) {
             param_rotate[1] = transform.getRotate_centerX().floatValue();
         }
-        if (transform.getRotate_centerY() != null) {
+        if (transform.getRotate_centerY() != null && (!isChild || followParentTransformRotation)) {
             param_rotate[2] = transform.getRotate_centerY().floatValue();
         }
 	    
-	    if (transform.getScaleX() != null) {
+	    if (transform.getScaleX() != null && (!isChild || followParentTransformScale)) {
 	        scale(transform.getCurrent_scaleX());
 	    }
-	    if (transform.getScaleY() != null) {
+	    if (transform.getScaleY() != null && (!isChild || followParentTransformScale)) {
 	        scale(param_scale[0], transform.getCurrent_scaleY());
 	    }
-	    if (transform.getScale_centerX() != null && transform.getScale_centerY() != null) {
+	    if (transform.getScale_centerX() != null && transform.getScale_centerY() != null && (!isChild || followParentTransformScale)) {
 	        param_scale[3] = transform.getScale_centerX().floatValue();
 	        param_scale[4] = transform.getScale_centerY().floatValue();
 	    }
 	    
-	    if (transform.getRed()    != null) param_color[0] = transform.getCurrent_red();
-	    if (transform.getGreen()  != null) param_color[1] = transform.getCurrent_green();
-	    if (transform.getBlue()   != null) param_color[2] = transform.getCurrent_blue();
-	    if (transform.getAlpha()  != null) param_color[3] = transform.getCurrent_alpha();
+	    if (transform.getRed()    != null && (!isChild || followParentTransformColor)) param_color[0] = transform.getCurrent_red();
+	    if (transform.getGreen()  != null && (!isChild || followParentTransformColor)) param_color[1] = transform.getCurrent_green();
+	    if (transform.getBlue()   != null && (!isChild || followParentTransformColor)) param_color[2] = transform.getCurrent_blue();
+	    if (transform.getAlpha()  != null && (!isChild || followParentTransformColor)) param_color[3] = transform.getCurrent_alpha();
 	    
 	    synchronized(children) {
 	    	for (QuickTiGame2dSprite child : children) {
@@ -1067,6 +1074,57 @@ public class QuickTiGame2dSprite {
 
 	public void setRelativeToTransformParentY(float relativeToTransformParentY) {
 		this.relativeToTransformParentY = relativeToTransformParentY;
+	}
+
+	public boolean isFollowParentTransformPosition() {
+		return followParentTransformPosition;
+	}
+
+	public void setFollowParentTransformPosition(
+			boolean followParentTransformPosition) {
+		this.followParentTransformPosition = followParentTransformPosition;
+	}
+
+	public boolean isFollowParentTransformRotation() {
+		return followParentTransformRotation;
+	}
+
+	public void setFollowParentTransformRotation(
+			boolean followParentTransformRotation) {
+		this.followParentTransformRotation = followParentTransformRotation;
+	}
+
+	public boolean isFollowParentTransformScale() {
+		return followParentTransformScale;
+	}
+
+	public void setFollowParentTransformScale(boolean followParentTransformScale) {
+		this.followParentTransformScale = followParentTransformScale;
+	}
+
+	public boolean isFollowParentTransformSize() {
+		return followParentTransformSize;
+	}
+
+	public void setFollowParentTransformSize(boolean followParentTransformSize) {
+		this.followParentTransformSize = followParentTransformSize;
+	}
+
+	public boolean isFollowParentTransformColor() {
+		return followParentTransformColor;
+	}
+
+	public void setFollowParentTransformColor(boolean followParentTransformColor) {
+		this.followParentTransformColor = followParentTransformColor;
+	}
+
+	public boolean isFollowParentTransformFrameIndex() {
+		return followParentTransformFrameIndex;
+	}
+
+	public void setFollowParentTransformFrameIndex(
+			boolean followParentTransformFrameIndex) {
+		this.followParentTransformFrameIndex = followParentTransformFrameIndex;
 	}
 }
 class QuickTiGame2dImagePackInfo {

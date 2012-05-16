@@ -402,4 +402,60 @@ public class SpriteProxy extends KrollProxy {
 		
 		return centerInfoCache;
 	}
+	
+	@Kroll.getProperty @Kroll.method
+	public boolean getFollowParentTransformPosition() {
+		return sprite.isFollowParentTransformPosition();
+	}
+	
+	@Kroll.setProperty @Kroll.method
+	public void setFollowParentTransformPosition(boolean follow) {
+		sprite.setFollowParentTransformPosition(follow);
+	}
+
+	@Kroll.getProperty @Kroll.method
+	public boolean getFollowParentTransformRotation() {
+		return sprite.isFollowParentTransformRotation();
+	}
+	
+	@Kroll.setProperty @Kroll.method
+	public void setFollowParentTransformRotation(boolean follow) {
+		sprite.setFollowParentTransformRotation(follow);
+	}
+	@Kroll.getProperty @Kroll.method
+	public boolean getFollowParentTransformScale() {
+		return sprite.isFollowParentTransformScale();
+	}
+	
+	@Kroll.setProperty @Kroll.method
+	public void setFollowParentTransformScale(boolean follow) {
+		sprite.setFollowParentTransformScale(follow);
+	}
+	@Kroll.getProperty @Kroll.method
+	public boolean getFollowParentTransformColor() {
+		return sprite.isFollowParentTransformColor();
+	}
+	
+	@Kroll.setProperty @Kroll.method
+	public void setFollowParentTransformColor(boolean follow) {
+		sprite.setFollowParentTransformColor(follow);
+	}
+	@Kroll.getProperty @Kroll.method
+	public boolean getFollowParentTransformFrameIndex() {
+		return sprite.isFollowParentTransformFrameIndex();
+	}
+	
+	@Kroll.setProperty @Kroll.method
+	public void setFollowParentTransformFrameIndex(boolean follow) {
+		sprite.setFollowParentTransformFrameIndex(follow);
+	}
+	@Kroll.getProperty @Kroll.method
+	public boolean getFollowParentTransformSize() {
+		return sprite.isFollowParentTransformSize();
+	}
+	
+	@Kroll.setProperty @Kroll.method
+	public void setFollowParentTransformSize(boolean follow) {
+		sprite.setFollowParentTransformSize(follow);
+	}
 }

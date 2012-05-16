@@ -58,6 +58,8 @@
 @synthesize selectedFrameName;
 @synthesize srcBlendFactor, dstBlendFactor;
 @synthesize relativeToTransformParent, relativeToTransformParentX, relativeToTransformParentY;
+@synthesize followParentTransformPosition, followParentTransformRotation, followParentTransformScale,
+            followParentTransformSize, followParentTransformColor, followParentTransformFrameIndex;
 
 - (id)init {
     self = [super init];
@@ -121,6 +123,13 @@
         relativeToTransformParent = FALSE;
         relativeToTransformParentX = 0;
         relativeToTransformParentY = 0;
+        
+        followParentTransformPosition = TRUE;
+        followParentTransformRotation = TRUE;
+        followParentTransformScale    = TRUE;
+        followParentTransformSize     = TRUE;
+        followParentTransformColor    = TRUE;
+        followParentTransformFrameIndex = FALSE;
     }
     return self;
 }
@@ -901,47 +910,47 @@
     [transform apply];
     
     if (isChild && relativeToTransformParent) {
-        if (transform.x != nil) x = transform.current_x + relativeToTransformParentY;
-        if (transform.y != nil) y = transform.current_y + relativeToTransformParentX;
+        if (transform.x != nil && (!isChild || followParentTransformPosition)) x = transform.current_x + relativeToTransformParentY;
+        if (transform.y != nil && (!isChild || followParentTransformPosition)) y = transform.current_y + relativeToTransformParentX;
     } else {
-        if (transform.x != nil) x = transform.current_x;
-        if (transform.y != nil) y = transform.current_y;
+        if (transform.x != nil && (!isChild || followParentTransformPosition)) x = transform.current_x;
+        if (transform.y != nil && (!isChild || followParentTransformPosition)) y = transform.current_y;
     }
     
-    if (transform.z != nil) z = transform.current_z;
-    if (transform.width  != nil) width  = transform.current_width;
-    if (transform.height != nil) height = transform.current_height;
-    if (transform.frameIndex != nil) frameIndex = transform.current_frameIndex;
+    if (transform.z != nil && (!isChild || followParentTransformPosition)) z = transform.current_z;
+    if (transform.width  != nil && (!isChild || followParentTransformSize)) width  = transform.current_width;
+    if (transform.height != nil && (!isChild || followParentTransformSize)) height = transform.current_height;
+    if (transform.frameIndex != nil && (!isChild || followParentTransformFrameIndex)) frameIndex = transform.current_frameIndex;
     
-    if (transform.angle != nil) {
+    if (transform.angle != nil && (!isChild || followParentTransformRotation)) {
         [self rotate:transform.current_angle];
     }
     
-    if (transform.rotate_axis != nil) {
+    if (transform.rotate_axis != nil && (!isChild || followParentTransformRotation)) {
         param_rotate[4] = [transform.rotate_axis intValue];
     }
-    if (transform.rotate_centerX != nil) {
+    if (transform.rotate_centerX != nil && (!isChild || followParentTransformRotation)) {
         param_rotate[1] = [transform.rotate_centerX floatValue];
     }
-    if (transform.rotate_centerY != nil) {
+    if (transform.rotate_centerY != nil && (!isChild || followParentTransformRotation)) {
         param_rotate[2] = [transform.rotate_centerY floatValue];
     }
     
-    if (transform.scaleX != nil) {
+    if (transform.scaleX != nil && (!isChild || followParentTransformScale)) {
         [self scale:transform.current_scaleX];
     }
-    if (transform.scaleY != nil) {
+    if (transform.scaleY != nil && (!isChild || followParentTransformScale)) {
         [self scale:param_scale[0] scaleY:transform.current_scaleY];
     }
-    if (transform.scale_centerX != nil && transform.scale_centerY != nil) {
+    if (transform.scale_centerX != nil && transform.scale_centerY != nil && (!isChild || followParentTransformScale)) {
         param_scale[3] = [transform.scale_centerX floatValue];
         param_scale[4] = [transform.scale_centerY floatValue];
     }
     
-    if (transform.red    != nil) param_color[0] = transform.current_red;
-    if (transform.green  != nil) param_color[1] = transform.current_green;
-    if (transform.blue   != nil) param_color[2] = transform.current_blue;
-    if (transform.alpha  != nil) param_color[3] = transform.current_alpha;
+    if (transform.red    != nil && (!isChild || followParentTransformColor)) param_color[0] = transform.current_red;
+    if (transform.green  != nil && (!isChild || followParentTransformColor)) param_color[1] = transform.current_green;
+    if (transform.blue   != nil && (!isChild || followParentTransformColor)) param_color[2] = transform.current_blue;
+    if (transform.alpha  != nil && (!isChild || followParentTransformColor)) param_color[3] = transform.current_alpha;
     
     @synchronized(children) {
         for (QuickTiGame2dSprite* child in children) {

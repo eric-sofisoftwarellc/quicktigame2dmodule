@@ -43,6 +43,12 @@
 @property (nonatomic, readwrite, assign) id scaleX;
 @property (nonatomic, readwrite, assign) id scaleY;
 @property (nonatomic, readwrite, assign) id center;
+@property (nonatomic, readwrite, assign) id followParentTransformPosition;
+@property (nonatomic, readwrite, assign) id followParentTransformRotation;
+@property (nonatomic, readwrite, assign) id followParentTransformScale;
+@property (nonatomic, readwrite, assign) id followParentTransformSize;
+@property (nonatomic, readwrite, assign) id followParentTransformColor;
+@property (nonatomic, readwrite, assign) id followParentTransformFrameIndex;
 
 - (QuickTiGame2dSprite*)sprite;
 - (void)onNotification:(NSString*)type userInfo:(NSDictionary*)userInfo;

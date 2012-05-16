@@ -253,6 +253,12 @@
     sprite2.x = 100;
     sprite2.y = 100;
     sprite2.z = 2;
+
+    // sprite2.followParentTransformPosition = FALSE;
+    // sprite2.followParentTransformColor    = FALSE;
+    // sprite2.followParentTransformRotation = FALSE;
+    // sprite2.followParentTransformScale    = FALSE;
+    // sprite2.followParentTransformSize     = FALSE;
     
     [sprite1 addChildWithRelativePosition:sprite2];
     
@@ -276,6 +282,10 @@
         
         transform.x = [NSNumber numberWithInt:200];
         transform.y = [NSNumber numberWithInt:200];
+        transform.scaleX = [NSNumber numberWithInt:2];
+        transform.scaleY = [NSNumber numberWithInt:4];
+        [transform rotate:45];
+        [transform color:1 green:0 blue:0];
         transform.duration = 1000;
         
         [sprite1 transform:transform];
