@@ -189,14 +189,23 @@
 }
 
 - (void)layoutSubviews {
-    if (currentlyAnimating) return;
     if ([self debug]) NSLog(@"[DEBUG] GameView layoutSubviews");
+    
+    BOOL shouldRestart = currentlyAnimating;
+    
+    if (shouldRestart) {
+        [self stop];
+    }
     
     [EAGLContext setCurrentContext:context];
     [self deleteFramebuffer];
     [self createFramebuffer];
     
     layoutSubviewsDone = TRUE;
+    
+    if (shouldRestart) {
+        [self start];
+    }
 }
 
 - (void)dealloc {
