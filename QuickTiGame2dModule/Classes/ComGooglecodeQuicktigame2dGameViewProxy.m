@@ -141,6 +141,7 @@
 }
 
 -(void)start:(id)args {
+    ENSURE_UI_THREAD_0_ARGS;
     [(ComGooglecodeQuicktigame2dGameView*)self.view start];
 }
 
@@ -149,6 +150,7 @@
 }
 
 -(void)stop:(id)args {
+    ENSURE_UI_THREAD_0_ARGS;
     [(ComGooglecodeQuicktigame2dGameView*)self.view stop];
 }
 
