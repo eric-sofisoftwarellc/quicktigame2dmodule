@@ -112,10 +112,16 @@ static GLint  textureFilter  = GL_NEAREST;
 }
 
 -(void)dealloc {
-    [sceneStack release];
+    
     [textureCache release];
     [waitingForLoadTextures release];
     [waitingForUnloadTextures release];
+    
+    textureCache = nil;
+    waitingForLoadTextures   = nil;
+    waitingForUnloadTextures = nil;
+
+    [sceneStack release];
     [notificationEventCache release];
     [fpsNotificationEventCache release];
     [snapshotTexture release];
