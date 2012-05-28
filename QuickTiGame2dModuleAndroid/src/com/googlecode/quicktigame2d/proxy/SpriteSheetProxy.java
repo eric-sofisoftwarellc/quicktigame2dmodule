@@ -72,6 +72,21 @@ public class SpriteSheetProxy extends SpriteProxy {
 	}
 	
 	@Kroll.method
+	public void stop() {
+		sprite.stop();
+	}
+	
+	@Kroll.method
+	public void pause() {
+		sprite.pause();
+	}
+	
+	@Kroll.method
+	public boolean pauseAt(int index) {
+		return sprite.pauseAt(index);
+	}
+	
+	@Kroll.method
 	public boolean isAnimationFinished() {
 		return sprite.isAnimationFinished();
 	}
