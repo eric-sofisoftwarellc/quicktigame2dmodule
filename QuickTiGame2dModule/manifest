@@ -41,4 +41,4 @@ name: quicktigame2dmodule
 moduleid: com.googlecode.quicktigame2d
 guid: 43e5477d-c827-44b6-b7e3-9c1db662a652
 platform: iphone
-minsdk: 2.0.1.GA
+minsdk: 2.0.1.GA2

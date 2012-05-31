@@ -40,4 +40,4 @@ name: quicktigame2dmoduleandroid
 moduleid: com.googlecode.quicktigame2d
 guid: eaf737cd-2fd6-419c-b4bf-783a9fd948e6
 platform: android
-minsdk: 2.0.1.GA
+minsdk: 2.0.1.GA2
