@@ -451,7 +451,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = iphoneos;
-				TITANIUM_SDK_VERSION = 2.0.1.GA2;
+				TITANIUM_SDK_VERSION = 2.0.2.GA;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -495,7 +495,7 @@
 				PRODUCT_NAME = ComGooglecodeQuicktigame2d;
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = iphoneos;
-				TITANIUM_SDK_VERSION = 2.0.1.GA2;
+				TITANIUM_SDK_VERSION = 2.0.2.GA;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
@@ -543,7 +543,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = iphoneos;
-				TITANIUM_SDK_VERSION = 2.0.1.GA2;
+				TITANIUM_SDK_VERSION = 2.0.2.GA;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -586,7 +586,7 @@
 				PRODUCT_NAME = ComGooglecodeQuicktigame2d;
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = iphoneos;
-				TITANIUM_SDK_VERSION = 2.0.1.GA2;
+				TITANIUM_SDK_VERSION = 2.0.2.GA;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
@@ -600,7 +600,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "Build & test";
-				TITANIUM_SDK_VERSION = 2.0.1.GA2;
+				TITANIUM_SDK_VERSION = 2.0.2.GA;
 			};
 			name = Debug;
 		};
@@ -612,7 +612,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "Build & test";
-				TITANIUM_SDK_VERSION = 2.0.1.GA2;
+				TITANIUM_SDK_VERSION = 2.0.2.GA;
 				ZERO_LINK = NO;
 			};
 			name = Release;
