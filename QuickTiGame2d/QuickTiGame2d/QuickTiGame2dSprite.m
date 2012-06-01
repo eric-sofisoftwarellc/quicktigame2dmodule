@@ -58,7 +58,7 @@
 @synthesize selectedFrameName;
 @synthesize srcBlendFactor, dstBlendFactor;
 @synthesize relativeToTransformParent, relativeToTransformParentX, relativeToTransformParentY;
-@synthesize followParentTransformPosition, followParentTransformRotation, followParentTransformScale,
+@synthesize followParentTransformPosition, followParentTransformRotationCenter, followParentTransformScale,
             followParentTransformSize, followParentTransformColor, followParentTransformFrameIndex;
 
 - (id)init {
@@ -130,6 +130,7 @@
         followParentTransformSize     = TRUE;
         followParentTransformColor    = TRUE;
         followParentTransformFrameIndex = FALSE;
+        followParentTransformRotationCenter = TRUE;
     }
     return self;
 }
@@ -140,6 +141,33 @@
 
 -(CGRect)bounds {
     return CGRectMake(x, y, width, height);
+}
+
+-(CGPoint)rotationCenter {
+    return CGPointMake(param_rotate[1], param_rotate[2]);
+}
+
+-(void)setRotationCenter:(struct CGPoint)value {
+    param_rotate[1] = value.x;
+    param_rotate[2] = value.y;
+}
+
+-(CGPoint)scaleCenter {
+    return CGPointMake(param_scale[3], param_scale[4]);
+}
+
+-(void)setScaleCenter:(struct CGPoint)value {
+    param_scale[3] = value.x;
+    param_scale[4] = value.y;
+}
+
+-(BOOL)followParentTransformRotation {
+    return followParentTransformRotation;
+}
+
+-(void)setFollowParentTransformRotation:(BOOL)value {
+    followParentTransformRotation       = value;
+    followParentTransformRotationCenter = value;
 }
 
 -(QuickTiGame2dTexture*)texture {
@@ -923,16 +951,21 @@
     if (transform.frameIndex != nil && (!isChild || followParentTransformFrameIndex)) frameIndex = transform.current_frameIndex;
     
     if (transform.angle != nil && (!isChild || followParentTransformRotation)) {
-        [self rotate:transform.current_angle];
+        if (transform.rotate_centerX == nil && transform.rotate_centerY == nil) {
+            [self rotate:transform.current_angle];
+        } else {
+            [self setAngle:transform.current_angle];
+        }
     }
     
     if (transform.rotate_axis != nil && (!isChild || followParentTransformRotation)) {
         param_rotate[4] = [transform.rotate_axis intValue];
     }
-    if (transform.rotate_centerX != nil && (!isChild || followParentTransformRotation)) {
+    if (transform.rotate_centerX != nil && (!isChild || followParentTransformRotationCenter)) {
         param_rotate[1] = [transform.rotate_centerX floatValue];
     }
-    if (transform.rotate_centerY != nil && (!isChild || followParentTransformRotation)) {
+    
+    if (transform.rotate_centerY != nil && (!isChild || followParentTransformRotationCenter)) {
         param_rotate[2] = [transform.rotate_centerY floatValue];
     }
     

@@ -110,6 +110,7 @@ public class QuickTiGame2dSprite {
     
     protected boolean followParentTransformPosition   = true;
 	protected boolean followParentTransformRotation   = true;
+	protected boolean followParentTransformRotationCenter   = true;
     protected boolean followParentTransformScale      = true;
     protected boolean followParentTransformSize       = true;
     protected boolean followParentTransformColor      = true;
@@ -696,7 +697,23 @@ public class QuickTiGame2dSprite {
 	    param_rotate[3] = 0;
 	    param_rotate[4] = axis;
 	}
+	
+	public float getRotationCenterX() {
+		return param_rotate[1];
+	}
+	
+	public void setRotationCenterX(float value) {
+		param_rotate[1] = value;
+	}
 
+	public float getRotationCenterY() {
+		return param_rotate[2];
+	}
+	
+	public void setRotationCenterY(float value) {
+		param_rotate[2] = value;
+	}
+	
 	public void scale(float scaleXY) {
 	    scale(scaleXY, scaleXY);
 	}
@@ -733,6 +750,22 @@ public class QuickTiGame2dSprite {
 	
 	public void setScaleY(float value) {
 		param_scale[1] = value;
+	}
+	
+	public float getScaleCenterX() {
+		return param_scale[3];
+	}
+	
+	public void setScaleCenterX(float value) {
+		param_scale[3] = value;
+	}
+
+	public float getScaleCenterY() {
+		return param_scale[4];
+	}
+	
+	public void setScaleCenterY(float value) {
+		param_scale[4] = value;
 	}
 	
 	public String getImage() {
@@ -974,15 +1007,19 @@ public class QuickTiGame2dSprite {
 	    if (transform.getFrameIndex() != null && (!isChild || followParentTransformFrameIndex)) frameIndex = transform.getCurrent_frameIndex();
 	    
 	    if (transform.getAngle() != null && (!isChild || followParentTransformRotation)) {
-	        rotate(transform.getCurrent_angle());
+	    	if (transform.getRotate_centerX() == null && transform.getRotate_centerX() == null) {
+	    		rotate(transform.getCurrent_angle());
+	    	} else {
+	    		setAngle(transform.getCurrent_angle());
+	    	}
 	    }
         if (transform.getRotate_axis() != null && (!isChild || followParentTransformRotation)) {
             param_rotate[4] = transform.getRotate_axis().intValue();
         }
-        if (transform.getRotate_centerX() != null && (!isChild || followParentTransformRotation)) {
+        if (transform.getRotate_centerX() != null && (!isChild || followParentTransformRotationCenter)) {
             param_rotate[1] = transform.getRotate_centerX().floatValue();
         }
-        if (transform.getRotate_centerY() != null && (!isChild || followParentTransformRotation)) {
+        if (transform.getRotate_centerY() != null && (!isChild || followParentTransformRotationCenter)) {
             param_rotate[2] = transform.getRotate_centerY().floatValue();
         }
 	    
@@ -1092,8 +1129,18 @@ public class QuickTiGame2dSprite {
 	public void setFollowParentTransformRotation(
 			boolean followParentTransformRotation) {
 		this.followParentTransformRotation = followParentTransformRotation;
+		this.followParentTransformRotationCenter = followParentTransformRotation;
 	}
 
+	public boolean isFollowParentTransformRotationCenter() {
+		return followParentTransformRotationCenter;
+	}
+
+	public void setFollowParentTransformRotationCenter(
+			boolean followParentTransformRotationCenter) {
+		this.followParentTransformRotationCenter = followParentTransformRotationCenter;
+	}
+	
 	public boolean isFollowParentTransformScale() {
 		return followParentTransformScale;
 	}

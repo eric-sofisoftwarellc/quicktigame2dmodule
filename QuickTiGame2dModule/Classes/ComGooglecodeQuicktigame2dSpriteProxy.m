@@ -36,6 +36,8 @@
     if (self != nil) {
         sprite = [[QuickTiGame2dSprite alloc] init];
         centerInfoCache = [[NSMutableDictionary alloc] init];
+        rotationCenterInfoCache = [[NSMutableDictionary alloc] init];
+        scaleCenterInfoCache = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -43,6 +45,8 @@
 - (void)dealloc {
     [sprite release];
     [centerInfoCache release];
+    [rotationCenterInfoCache release];
+    [scaleCenterInfoCache release];
     [super dealloc];
 }
 
@@ -305,6 +309,38 @@
     if ([value objectForKey:@"y"] != nil) sprite.y = y - (sprite.height * 0.5f);
 }
 
+- (id)rotationCenter {
+    [rotationCenterInfoCache setValue:NUMFLOAT(sprite.rotationCenter.x) forKey:@"x"];
+    [rotationCenterInfoCache setValue:NUMFLOAT(sprite.rotationCenter.y) forKey:@"y"];
+    return rotationCenterInfoCache;
+}
+
+- (void)setRotationCenter:(id)value {
+    ENSURE_SINGLE_ARG(value, NSDictionary);
+    float x  = [TiUtils floatValue:@"x"  properties:value  def:0];
+    float y  = [TiUtils floatValue:@"y"  properties:value  def:0];
+
+    if ([value objectForKey:@"x"] != nil && [value objectForKey:@"y"] != nil) {
+        sprite.rotationCenter = CGPointMake(x, y);
+    }
+}
+
+- (id)scaleCenter {
+    [scaleCenterInfoCache setValue:NUMFLOAT(sprite.scaleCenter.x) forKey:@"x"];
+    [scaleCenterInfoCache setValue:NUMFLOAT(sprite.scaleCenter.y) forKey:@"y"];
+    return scaleCenterInfoCache;
+}
+
+- (void)setScaleCenter:(id)value {
+    ENSURE_SINGLE_ARG(value, NSDictionary);
+    float x  = [TiUtils floatValue:@"x"  properties:value  def:0];
+    float y  = [TiUtils floatValue:@"y"  properties:value  def:0];
+    
+    if ([value objectForKey:@"x"] != nil && [value objectForKey:@"y"] != nil) {
+        sprite.scaleCenter = CGPointMake(x, y);
+    }
+}
+
 -(void)show:(id)args {
     sprite.alpha = 1;
 }
@@ -388,6 +424,15 @@
 - (void)setFollowParentTransformRotation:(id)value {
     ENSURE_SINGLE_ARG(value, NSNumber);
     sprite.followParentTransformRotation = [value boolValue];
+}
+
+- (id)followParentTransformRotationCenter {
+    return NUMBOOL(sprite.followParentTransformRotationCenter);
+}
+
+- (void)setFollowParentTransformRotationCenter:(id)value {
+    ENSURE_SINGLE_ARG(value, NSNumber);
+    sprite.followParentTransformRotationCenter = [value boolValue];
 }
 
 - (id)followParentTransformScale {

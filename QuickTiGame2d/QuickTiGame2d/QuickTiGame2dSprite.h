@@ -103,6 +103,7 @@
     BOOL  followParentTransformSize;
     BOOL  followParentTransformColor;
     BOOL  followParentTransformFrameIndex;
+    BOOL  followParentTransformRotationCenter;
 }
 @property (readonly) BOOL hasTexture;
 @property (readonly) NSInteger frameCount;
@@ -127,12 +128,15 @@
 @property (readwrite) float scaleY;
 @property (readonly) struct CGPoint center;
 @property (readonly) struct CGRect  bounds;
+@property (readwrite) struct CGPoint rotationCenter;
+@property (readwrite) struct CGPoint scaleCenter;
 @property (readwrite) BOOL  relativeToTransformParent;
 @property (readwrite) float relativeToTransformParentX;
 @property (readwrite) float relativeToTransformParentY;
 @property (readonly) QuickTiGame2dTexture* texture;
 @property (readwrite) BOOL  followParentTransformPosition;
 @property (readwrite) BOOL  followParentTransformRotation;
+@property (readwrite) BOOL  followParentTransformRotationCenter;
 @property (readwrite) BOOL  followParentTransformScale;
 @property (readwrite) BOOL  followParentTransformSize;
 @property (readwrite) BOOL  followParentTransformColor;

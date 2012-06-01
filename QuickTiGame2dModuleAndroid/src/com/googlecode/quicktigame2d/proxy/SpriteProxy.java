@@ -45,6 +45,8 @@ public class SpriteProxy extends KrollProxy {
 	protected QuickTiGame2dSprite sprite;
 	protected ArrayList<TransformProxy> transforms = new ArrayList<TransformProxy>();
 	protected HashMap<String, Object> centerInfoCache = new HashMap<String, Object>();
+	protected HashMap<String, Object> rotationCenterInfoCache = new HashMap<String, Object>();
+	protected HashMap<String, Object> scaleCenterInfoCache = new HashMap<String, Object>();
 	
 	public SpriteProxy() {
 		sprite = new QuickTiGame2dSprite();
@@ -403,6 +405,44 @@ public class SpriteProxy extends KrollProxy {
 		return centerInfoCache;
 	}
 	
+	@Kroll.setProperty @Kroll.method
+	public void setRotationCenter(@SuppressWarnings("rawtypes") HashMap info) {
+		if (info.containsKey("x")) {
+			sprite.setRotationCenterX((float)TiConvert.toDouble(info.get("x")));
+		}
+		if (info.containsKey("y")) {
+			sprite.setRotationCenterY((float)TiConvert.toDouble(info.get("y")));
+		}
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@Kroll.getProperty @Kroll.method
+	public HashMap getRotationCenter() {
+		rotationCenterInfoCache.put("x" , sprite.getRotationCenterX());
+		rotationCenterInfoCache.put("y" , sprite.getRotationCenterY());
+		
+		return rotationCenterInfoCache;
+	}
+
+	@Kroll.setProperty @Kroll.method
+	public void setScaleCenter(@SuppressWarnings("rawtypes") HashMap info) {
+		if (info.containsKey("x")) {
+			sprite.setScaleCenterX((float)TiConvert.toDouble(info.get("x")));
+		}
+		if (info.containsKey("y")) {
+			sprite.setScaleCenterY((float)TiConvert.toDouble(info.get("y")));
+		}
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@Kroll.getProperty @Kroll.method
+	public HashMap getScaleCenter() {
+		scaleCenterInfoCache.put("x" , sprite.getScaleCenterX());
+		scaleCenterInfoCache.put("y" , sprite.getScaleCenterY());
+		
+		return scaleCenterInfoCache;
+	}
+
 	@Kroll.getProperty @Kroll.method
 	public boolean getFollowParentTransformPosition() {
 		return sprite.isFollowParentTransformPosition();
@@ -422,6 +462,17 @@ public class SpriteProxy extends KrollProxy {
 	public void setFollowParentTransformRotation(boolean follow) {
 		sprite.setFollowParentTransformRotation(follow);
 	}
+	
+	@Kroll.getProperty @Kroll.method
+	public boolean getFollowParentTransformRotationCenter() {
+		return sprite.isFollowParentTransformRotationCenter();
+	}
+	
+	@Kroll.setProperty @Kroll.method
+	public void setFollowParentTransformRotationCenter(boolean follow) {
+		sprite.setFollowParentTransformRotationCenter(follow);
+	}
+	
 	@Kroll.getProperty @Kroll.method
 	public boolean getFollowParentTransformScale() {
 		return sprite.isFollowParentTransformScale();

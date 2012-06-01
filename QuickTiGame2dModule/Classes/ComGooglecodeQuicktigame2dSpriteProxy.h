@@ -31,6 +31,8 @@
 @interface ComGooglecodeQuicktigame2dSpriteProxy : TiProxy {
     QuickTiGame2dSprite* sprite;
     NSMutableDictionary* centerInfoCache;
+    NSMutableDictionary* rotationCenterInfoCache;
+    NSMutableDictionary* scaleCenterInfoCache;
 }
 @property (nonatomic, readwrite, assign) id image;
 @property (nonatomic, readwrite, assign) id width;
@@ -43,8 +45,11 @@
 @property (nonatomic, readwrite, assign) id scaleX;
 @property (nonatomic, readwrite, assign) id scaleY;
 @property (nonatomic, readwrite, assign) id center;
+@property (nonatomic, readwrite, assign) id rotationCenter;
+@property (nonatomic, readwrite, assign) id scaleCenter;
 @property (nonatomic, readwrite, assign) id followParentTransformPosition;
 @property (nonatomic, readwrite, assign) id followParentTransformRotation;
+@property (nonatomic, readwrite, assign) id followParentTransformRotationCenter;
 @property (nonatomic, readwrite, assign) id followParentTransformScale;
 @property (nonatomic, readwrite, assign) id followParentTransformSize;
 @property (nonatomic, readwrite, assign) id followParentTransformColor;
