@@ -1007,7 +1007,7 @@ public class QuickTiGame2dSprite {
 	    if (transform.getFrameIndex() != null && (!isChild || followParentTransformFrameIndex)) frameIndex = transform.getCurrent_frameIndex();
 	    
 	    if (transform.getAngle() != null && (!isChild || followParentTransformRotation)) {
-	    	if (transform.getRotate_centerX() == null && transform.getRotate_centerX() == null) {
+	    	if (transform.getRotate_centerX() == null && transform.getRotate_centerY() == null) {
 	    		rotate(transform.getCurrent_angle());
 	    	} else {
 	    		setAngle(transform.getCurrent_angle());

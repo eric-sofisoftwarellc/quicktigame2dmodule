@@ -938,8 +938,8 @@
     [transform apply];
     
     if (isChild && relativeToTransformParent) {
-        if (transform.x != nil && (!isChild || followParentTransformPosition)) x = transform.current_x + relativeToTransformParentY;
-        if (transform.y != nil && (!isChild || followParentTransformPosition)) y = transform.current_y + relativeToTransformParentX;
+        if (transform.x != nil && (!isChild || followParentTransformPosition)) x = transform.current_x + relativeToTransformParentX;
+        if (transform.y != nil && (!isChild || followParentTransformPosition)) y = transform.current_y + relativeToTransformParentY;
     } else {
         if (transform.x != nil && (!isChild || followParentTransformPosition)) x = transform.current_x;
         if (transform.y != nil && (!isChild || followParentTransformPosition)) y = transform.current_y;
